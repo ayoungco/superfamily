@@ -1,0 +1,44 @@
+/* CSS Document */
+body {
+	background-color: #989898;
+}
+.textbox { 
+	background-image:url(images/textbg.png);
+	padding:10px;
+}
+
+#content {
+background-image:url(css/images/logo3.png);
+background-repeat:no-repeat;
+}
+.content_text {
+	text-align:left;
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.content_text_small {
+	text-align:left;
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+h1 {
+	text-align:left;
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 25px;
+}
+#Layer1 {
+	position:absolute;
+	margin-left:-380px;
+	left:654px;
+	top:453px;
+	width:760px;
+	height:1040px;
+	z-index:1;
+	overflow: scroll;
+}
+.style55 {color:#444444; font-family:Georgia, "Times New Roman", Times, serif; font-size:14px; padding:5px; position:}
+.style56 {font-size: 36px}
