@@ -1,68 +1,90 @@
-ComfyUI is **not the right tool for audio transcription** by default.
+# Local Whisper Transcription
 
-Use **Whisper** instead.
+ComfyUI is **not the right tool for audio transcription** by default. Use a
+local Whisper workflow instead.
 
-### Simple local option
-
-```bash
-pip install -U openai-whisper
-```
-
-Transcribe:
-
-```bash
-whisper audio.mp3 --model medium --language English
-```
-
-Output files will appear beside the audio:
+This repo now has a staged workflow in `scripts/transcription`:
 
 ```text
-audio.txt
-audio.srt
-audio.vtt
+video files
+-> discover manifest
+-> ffprobe inspection
+-> preservation WAV extraction
+-> speech cleanup WAV
+-> local faster-whisper transcript
 ```
 
-### Better/faster NVIDIA option
+The full workflow notes are in `scripts/transcription/README.md`.
+
+## Recommended Local Setup
+
+For the Fedora 44 workstation with an NVIDIA 3060 12 GB GPU, use
+`faster-whisper` locally:
 
 ```bash
-pip install -U faster-whisper
+sudo dnf install ffmpeg ffmpeg-free ffmpeg-free-devel python3 python3-pip
+python3 -m venv .venv-transcription
+source .venv-transcription/bin/activate
+pip install -U pip faster-whisper
 ```
 
-Example script:
-
-```python
-from faster_whisper import WhisperModel
-
-model = WhisperModel("medium", device="cuda", compute_type="float16")
-
-segments, info = model.transcribe("audio.mp3")
-
-with open("transcript.txt", "w") as f:
-    for segment in segments:
-        f.write(segment.text.strip() + "\n")
-```
-
-### If you specifically want it in ComfyUI
-
-Search/install a custom node for **Whisper / audio transcription**, but I’d keep transcription outside ComfyUI unless your workflow needs audio → prompt → image/video.
-
-Best practical setup:
+Start with:
 
 ```text
-audio/video file
-→ ffmpeg extract audio
-→ whisper/faster-whisper transcript
-→ use transcript as prompt/context in ComfyUI
+model: large-v3
+device: cuda
+compute_type: float16
+language: en
 ```
 
-Extract audio from video:
+If GPU memory gets tight, try `medium` or lower `--beam-size`.
+
+## One Stage at a Time
+
+Discover files:
 
 ```bash
-ffmpeg -i input.mp4 -vn -acodec copy audio.m4a
+bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv data/videos
 ```
 
-Then:
+Probe audio streams:
 
 ```bash
-whisper audio.m4a --model medium
+bash scripts/transcription/10-probe-audio.sh -m data/transcription/manifest.tsv
 ```
+
+Extract the first audio track:
+
+```bash
+bash scripts/transcription/20-extract-audio.sh -m data/transcription/manifest.tsv --track 0
+```
+
+Clean for speech:
+
+```bash
+bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv --profile speech
+```
+
+Transcribe locally:
+
+```bash
+python scripts/transcription/40-transcribe-local.py \
+  -m data/transcription/manifest.tsv \
+  --profile speech \
+  --model large-v3 \
+  --device cuda \
+  --compute-type float16 \
+  --language en \
+  --vad-filter
+```
+
+Outputs go to `data/transcription/transcripts` as `.txt`, `.srt`, `.vtt`,
+`.json`, and `.raw.md`.
+
+## Cleanup Profiles
+
+Use multiple passes when the audio is muddy:
+
+- `speech`: highpass, lowpass, moderate denoise, loudness normalization.
+- `light`: gentler denoise when the default creates artifacts.
+- `normalized`: no denoise, useful as a baseline.

@@ -336,17 +336,15 @@ Use the raw or lightly cleaned version. VHS hiss is annoying to humans, but some
 
 Use diarization if possible, but still review manually. Speaker labels are helpful, but they can be wrong when voices overlap.
 
-## Automation Plan
+## Local Automation
 
-A future script could do this for every video:
+The staged scripts in `scripts/transcription` implement the workflow one
+process at a time:
 
-1. Find `.mp4` and `.m4v` files under `data/videos`.
-2. Run `ffprobe` and save stream info to `data/logs`.
-3. Extract preservation WAV to `data/audio`.
-4. Create mono, normalized, and cleaned transcription WAVs.
-5. Run transcription on each candidate audio file.
-6. Save raw `.srt`, `.json`, and `.txt` outputs.
-7. Generate a Markdown review file with source paths and status.
+1. `00-discover-videos.sh`: create a manifest from a directory or file list.
+2. `10-probe-audio.sh`: save `ffprobe` logs and stream metadata.
+3. `20-extract-audio.sh`: extract preservation WAV files.
+4. `30-clean-audio.sh`: create mono 16 kHz speech-cleaned WAV files.
+5. `40-transcribe-local.py`: transcribe locally with `faster-whisper`.
 
-That script should skip files that already have completed outputs unless explicitly asked to regenerate them.
-
+See `scripts/transcription/README.md` for the Fedora/NVIDIA workflow.
