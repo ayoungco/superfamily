@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/discussion/LEGO Adventurers Jungle Theme.md",
+                "file": "docs/discussion/Graph.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LEGO Adventurers Jungle Theme"
+              "title": "Graph"
             }
           }
         ]
@@ -183,10 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "7158b4f56c0bf7ef",
+  "active": "6548420a717d3a81",
   "lastOpenFiles": [
-    "docs/discussion/Iguazu Falls.md",
     "docs/discussion/LEGO Adventurers Jungle Theme.md",
+    "docs/discussion/Iguazu Falls.md",
     "docs/discussion",
     "AGENTS.md.md",
     "docs/init.md",
