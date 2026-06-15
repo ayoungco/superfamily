@@ -14,7 +14,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("-m", "--manifest", default="data/transcription/manifest.tsv")
     parser.add_argument("-i", "--audio-dir", default="data/transcription/audio/cleaned")
-    parser.add_argument("-o", "--output-dir", default="data/transcription/transcripts")
+    parser.add_argument("-o", "--output-dir", default="transcripts/raw")
     parser.add_argument("--profile", default="speech")
     parser.add_argument("--model", default="large-v3")
     parser.add_argument("--device", default="cuda")
@@ -22,6 +22,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--language", default="en")
     parser.add_argument("--beam-size", type=int, default=5)
     parser.add_argument("--initial-prompt", default=None)
+    parser.add_argument(
+        "--initial-prompt-file",
+        help="UTF-8 text file containing names, terms, and story context.",
+    )
     parser.add_argument("--vad-filter", action="store_true")
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
@@ -87,6 +91,18 @@ def write_outputs(out_base: Path, segments: list[dict], info: object, source_aud
 def main() -> int:
     args = parse_args()
 
+    if args.initial_prompt and args.initial_prompt_file:
+        print("Use only one of --initial-prompt or --initial-prompt-file.", file=sys.stderr)
+        return 2
+
+    initial_prompt = args.initial_prompt
+    if args.initial_prompt_file:
+        prompt_path = Path(args.initial_prompt_file)
+        if not prompt_path.exists():
+            print(f"Initial prompt file not found: {prompt_path}", file=sys.stderr)
+            return 2
+        initial_prompt = prompt_path.read_text(encoding="utf-8").strip()
+
     try:
         from faster_whisper import WhisperModel
     except ImportError:
@@ -133,8 +149,9 @@ def main() -> int:
                 str(audio_path),
                 language=args.language,
                 beam_size=args.beam_size,
-                initial_prompt=args.initial_prompt,
+                initial_prompt=initial_prompt,
                 vad_filter=args.vad_filter,
+                word_timestamps=True,
             )
             segments = [
                 {
@@ -144,6 +161,15 @@ def main() -> int:
                     "text": segment.text,
                     "avg_logprob": segment.avg_logprob,
                     "no_speech_prob": segment.no_speech_prob,
+                    "words": [
+                        {
+                            "start": word.start,
+                            "end": word.end,
+                            "word": word.word,
+                            "probability": word.probability,
+                        }
+                        for word in (segment.words or [])
+                    ],
                 }
                 for segment in segment_iter
             ]

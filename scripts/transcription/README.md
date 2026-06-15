@@ -3,15 +3,24 @@
 This workflow is intentionally split into small stages. Run one stage, inspect
 the output, then continue.
 
-Target machine: Fedora workstation with an NVIDIA GPU, such as a 3060 12 GB.
+The scripts work on macOS and Linux. A CUDA workstation is substantially
+faster for the strongest models, but CPU transcription is supported for setup
+and smaller jobs.
 
 ## 1. Install Tools
 
+Bootstrap the local directories and Python environment:
+
 ```bash
-sudo dnf install ffmpeg ffmpeg-free ffmpeg-free-devel python3 python3-pip
-python3 -m venv .venv-transcription
-source .venv-transcription/bin/activate
-pip install -U pip faster-whisper
+bash scripts/transcription/bootstrap.sh
+```
+
+This creates ignored local work areas under `media/` and
+`data/transcription/`, plus tracked transcript folders under `transcripts/`.
+It does not download Python packages unless `--install` is supplied.
+
+```bash
+bash scripts/transcription/bootstrap.sh --install
 ```
 
 If CUDA is configured correctly, `faster-whisper` can use:
@@ -30,7 +39,7 @@ For the 3060 12 GB, start with `large-v3`. If memory gets tight, use
 Pass a directory or an explicit list of files:
 
 ```bash
-bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv data/videos
+bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv media/inbox
 bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv video1.mp4 video2.m4v
 ```
 
@@ -89,13 +98,25 @@ python scripts/transcription/40-transcribe-local.py \
   --vad-filter
 ```
 
-Outputs are written to `data/transcription/transcripts`:
+Outputs are written to the tracked `transcripts/raw` directory:
 
 - `.txt`
 - `.srt`
 - `.vtt`
 - `.json`
 - `.raw.md`
+
+Pass series vocabulary and likely character names to Whisper:
+
+```bash
+python scripts/transcription/40-transcribe-local.py \
+  --initial-prompt-file transcripts/context/super-family.txt \
+  --device cpu --compute-type int8 --model medium --vad-filter
+```
+
+Use `--device cuda --compute-type float16 --model large-v3` on the NVIDIA
+workstation. Raw JSON includes word-level timestamps and probabilities for
+targeted review of uncertain dialogue.
 
 ## Notes
 
@@ -104,3 +125,6 @@ Outputs are written to `data/transcription/transcripts`:
 - Keep the raw extraction. Do not overwrite source videos or preservation WAVs.
 - Try multiple cleanup profiles for muddy VHS audio. The most pleasant audio to
   hear is not always the best audio for transcription.
+- Whisper primarily transcribes speech. Add caption-style cues such as
+  `[door closes]`, `[dramatic music]`, or `[indistinct shouting]` during review;
+  do not treat automatically invented sound labels as archival fact.

@@ -1,5 +1,7 @@
 # The Super Family
 
+Formerly known as "The Powerteam"
+
 The adventures of Dr. Seinyor and Stacie.
 
 - Extract dialogue from movies, transfer to Voice Memos and transcribe for text content `scripts`

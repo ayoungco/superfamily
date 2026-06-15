@@ -78,7 +78,7 @@ python scripts/transcription/40-transcribe-local.py \
   --vad-filter
 ```
 
-Outputs go to `data/transcription/transcripts` as `.txt`, `.srt`, `.vtt`,
+Outputs go to `transcripts/raw` as `.txt`, `.srt`, `.vtt`,
 `.json`, and `.raw.md`.
 
 ## Cleanup Profiles

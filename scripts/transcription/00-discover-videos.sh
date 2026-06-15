@@ -9,7 +9,7 @@ Usage:
 Find video files and write a manifest for the later transcription stages.
 
 Examples:
-  scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv data/videos
+  scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv media/inbox
   scripts/transcription/00-discover-videos.sh movie1.mp4 movie2.m4v
 USAGE
 }
@@ -52,12 +52,20 @@ done | sort -u > "$tmp"
 {
   printf 'id\tsource_path\tsource_name\n'
   while IFS= read -r path; do
-    abs="$(readlink -f "$path")"
+    if command -v realpath >/dev/null 2>&1; then
+      abs="$(realpath "$path")"
+    else
+      abs="$(cd "$(dirname "$path")" && pwd -P)/$(basename "$path")"
+    fi
     name="$(basename "$abs")"
     base="${name%.*}"
     slug="$(printf '%s' "$base" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//')"
     [ -n "$slug" ] || slug="video"
-    digest="$(printf '%s' "$abs" | sha1sum | awk '{print substr($1,1,10)}')"
+    if command -v sha1sum >/dev/null 2>&1; then
+      digest="$(printf '%s' "$abs" | sha1sum | awk '{print substr($1,1,10)}')"
+    else
+      digest="$(printf '%s' "$abs" | shasum -a 1 | awk '{print substr($1,1,10)}')"
+    fi
     printf '%s-%s\t%s\t%s\n' "$slug" "$digest" "$abs" "$name"
   done < "$tmp"
 } > "$output"

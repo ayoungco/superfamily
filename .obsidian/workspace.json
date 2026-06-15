@@ -185,13 +185,25 @@
   },
   "active": "6548420a717d3a81",
   "lastOpenFiles": [
+    "scripts/transcription/__pycache__/40-transcribe-local.cpython-311.pyc",
+    "scripts/transcription/__pycache__",
+    "data/transcription/manifest.tsv",
+    "data/transcription/audio/raw",
+    "data/transcription/audio/cleaned",
+    "data/transcription/probes",
+    "data/transcription/logs",
+    "data/transcription/audio",
+    "data/transcription",
+    "media/archive",
+    "media/inbox",
+    "transcripts/reviewed/README.md",
+    "transcripts/README.md",
+    "media/README.md",
     "docs/discussion/LEGO Adventurers Jungle Theme.md",
     "docs/discussion/Iguazu Falls.md",
-    "docs/discussion",
     "AGENTS.md.md",
     "docs/init.md",
     "README.md",
-    "docs/Transformation.md",
-    "docs"
+    "docs/Transformation.md"
   ]
 }
