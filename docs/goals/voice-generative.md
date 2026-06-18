@@ -1,3 +1,7 @@
+# Generative Voice Reconstruction
+
+Related: [[transcripts/README|Transcripts]] | [[scripts/transcription/README|Local Video Transcription Workflow]] | [[docs/goals/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]]
+
 I have hours of video of myself around 13 years old. Could I construct a generative model of my voice with that
 
 Yes—probably, with a big caveat:

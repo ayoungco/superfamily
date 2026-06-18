@@ -1,3 +1,7 @@
+# Whimsical Locations
+
+Related: [[Iguazu Falls]] | [[LEGO Adventurers Jungle Theme]] | [[docs/ship|The Ship]]
+
 Conversation with Gemini
 Other whimsical/fantasy real life locations like iguazu falls
 

@@ -1,5 +1,7 @@
 # Extracting Audio Tracks and Transcribing Muddy VHS Video
 
+Related: [[docs/goals/whisper-transcription|Local Whisper Transcription]] | [[scripts/transcription/README|Local Video Transcription Workflow]] | [[transcripts/README|Transcripts]] | [[voice-generative|Voice reconstruction goal]]
+
 This document describes a practical workflow for turning `.mp4` and `.m4v` video files into useful transcripts, especially when the source audio may be noisy, muffled, or degraded from VHS.
 
 The basic idea is:

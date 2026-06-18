@@ -9,6 +9,10 @@ source_format: Microsoft Word 97-2003 .doc
 title: The exact details of the Super Family's beginning have since been lost in time, but its history has recently been explained by Dr
 ---
 
+# The Exact Details of the Super Family
+
+Related: [[Super Family Prologue]] | [[The Return of Dr. Seinyor]] | [[Dr. Seinyor]] | [[docs/ship|The Ship]] | [[Vault Index]]
+
 The exact details of the Super Family's beginning have since been lost in time, but its history has recently been explained by Dr. Seinyor and Stacie... It is also worth noting that in THIS Lego world, humans and Lego people lived amongst each other. Dr. Seinyor, Stacie, Pepper, The Evil Brother, and Aleena are all humans.
 
 It all started in Legoland (aka The Lego Universe). Dr. Seinyor was seen by his world as a reclusive and lonely man, and he was always going on solo expeditions by himself in various parts of the wilderness. There he found lost temples and shrines, with much treasure. One of them, a very small monument under a waterfall, held a gold plate with various pulsing runes cut into it. Dr. Seinyor took this artifact, Indiana Jones-style, and noticed that there was something... different about this metal. It empowered him, made him feel... heroic. His first thought was to bring this before the Legoredo Museum of Legendary Artifacts and present it to the authorities there. Dr. Seinyor was told he could put together a presentation for the artifact, and he looked upon it as his path to fame and glory.

@@ -9,10 +9,14 @@ The adventures of Dr. Seinyor and Stacie.
 
 Text-only archive of my writings for the Super Family
 
+Open [[Vault Index]] for the Obsidian-oriented map of the archive.
+
 ## Project Goals
 
 - Generatively iterate this universe based on retrieved archival context.
 - Reconnect with this universe by using agents as a creative tool for self-learning.
+- Recover dialogue and story context through [[transcripts/README|Transcripts]] and the
+  [[scripts/transcription/README|Local Video Transcription Workflow]].
 
 ## Influence
 

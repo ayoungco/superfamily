@@ -185,6 +185,7 @@
   },
   "active": "6548420a717d3a81",
   "lastOpenFiles": [
+    "Vault Index.md",
     "scripts/transcription/__pycache__/40-transcribe-local.cpython-311.pyc",
     "scripts/transcription/__pycache__",
     "data/transcription/manifest.tsv",
@@ -195,7 +196,6 @@
     "data/transcription/audio",
     "data/transcription",
     "media/archive",
-    "media/inbox",
     "transcripts/reviewed/README.md",
     "transcripts/README.md",
     "media/README.md",

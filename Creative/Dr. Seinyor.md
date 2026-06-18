@@ -1,3 +1,7 @@
+# Dr. Seinyor
+
+Related: [[The exact details of the Super Family]] | [[The Return of Dr. Seinyor]] | [[docs/ship|The Ship]] | [[Iguazu Falls]] | [[Anagrams]]
+
 Dr. Seinyor mobbed by police, he had to be secured.
 This was like a reconstruction of the great Super Army. 
 Like when the Brickster took over Lego Island.
@@ -19,6 +23,6 @@ Makuta voice clips Super Family
   
 # dr.seinyor@outlook.com  
   
-![Dr. Seiner](Aliases.png)  
-# !["Men wear masks on which they carve](Eraser%20Turnabout%20Quote.png)  
+![Dr. Seinyor aliases](Aliases.png)
+!["Men wear masks on which they carve"](men-wear-masks-eraser-turnabout.png)
 You are a RECLAIMER like 343 said to Master Chief - index  

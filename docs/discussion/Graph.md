@@ -8,6 +8,8 @@ The short answer to your question is: **the building process itself reinforces t
 
 Here is how the science breaks down the two mindsets.
 
+Related: [[Vault Index]] | [Repository overview](../../README.md)
+
 ## 1. The "Instruction Booklet" Trap (Well-Defined Problems)
 
 When a child builds a specific Lego set using the manual, they are engaging in highly structured play. They are solving a **well-defined problem**: there is one correct outcome, a clear target image, and a precise sequence of steps to get there.

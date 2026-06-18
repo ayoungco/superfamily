@@ -12,6 +12,8 @@ Hollow Bastion (Kingdom Hearts). Source: Reddit / Regarding Hollow Bastion… 
 
 Iguazu Falls (Argentina/Brazil). Source: Wikipedia / Iguazu Falls - Wikipedia 
 
+Related: [[docs/ship|The Ship]] | [[Dr. Seinyor]] | [[whimsy|Whimsical locations]] | [[LEGO Adventurers Jungle Theme]] | [[Vault Index]]
+
 ### The Visual Connection
 
 If you imagine drop-planting Maleficent’s stronghold right into the heart of the **Garganta del Diablo (Devil’s Throat)** at Iguazu, the resemblance is striking:

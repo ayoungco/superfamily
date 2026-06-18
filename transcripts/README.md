@@ -1,5 +1,7 @@
 # Transcripts
 
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[docs/goals/whisper-transcription|Local Whisper Transcription]] | [[Vault Index]]
+
 Text artifacts in this directory are intended to be committed as searchable
 context for the Super Family archive.
 

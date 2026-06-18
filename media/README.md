@@ -1,5 +1,7 @@
 # Local Media Drop Zone
 
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[transcripts/README|Transcripts]]
+
 Everything in this directory except this README is ignored by Git.
 
 - `inbox/`: drop camcorder movies and other source video/audio here.

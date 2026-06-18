@@ -1,5 +1,7 @@
 # Local Video Transcription Workflow
 
+Related: [[docs/goals/whisper-transcription|Local Whisper Transcription]] | [[docs/goals/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[transcripts/README|Transcripts]] | [[media/README|Local Media Drop Zone]]
+
 This workflow is intentionally split into small stages. Run one stage, inspect
 the output, then continue.
 

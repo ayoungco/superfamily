@@ -12,6 +12,8 @@ subtitle: From REHAB 2020 JOURNAL
 title: Dr. Seinyor Returns
 ---
 
+Related: [[The exact details of the Super Family]] | [[Super Family Prologue]] | [[Dr. Seinyor]] | [[docs/ship|The Ship]] | [[Anagrams]]
+
 # Mutunga (or “Te Mutunga”)
 
 This chronicle is the only record of the events leading to the disbanding or disappearance of the Super Family. The following is merely a speculative account of the events leading up to then.

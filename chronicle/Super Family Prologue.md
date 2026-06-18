@@ -9,7 +9,9 @@ source_format: Microsoft Word 97-2003 .doc
 title: Super Family Prologue
 ---
 
-Super Family Prologue
+# Super Family Prologue
+
+Related: [[The exact details of the Super Family]] | [[The Return of Dr. Seinyor]] | [[Vault Index]]
 
 The reality that man exists in is a conglomerate of his thoughts. Interpretation, understanding, imagination, creation, and comprehension all are the result of human cognition. That which can be thought of is just as real as
 

@@ -4,6 +4,8 @@ The 1999 **Lego Adventurers Jungle subtheme** (where Johnny Thunder explores the
 
 Because Lego was leaning into a pulpy, 1930s adventure-serial aesthetic, they didn't strictly stick to historical accuracy. Instead, they blended elements from a few distinct cultures into a fictionalized "Jungle" setting.
 
+Related: [[Iguazu Falls]] | [[whimsy|Whimsical locations]] | [[The exact details of the Super Family]] | [[Vault Index]]
+
 ### 1. The Aztec Connection (Central Mexico)
 
 The most prominent visual cues point toward Mesoamerica, specifically the Aztecs:

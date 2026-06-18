@@ -1,5 +1,7 @@
 # Local Whisper Transcription
 
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[docs/goals/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[transcripts/README|Transcripts]] | [[media/README|Local Media Drop Zone]]
+
 ComfyUI is **not the right tool for audio transcription** by default. Use a
 local Whisper workflow instead.
 
