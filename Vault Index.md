@@ -29,6 +29,7 @@ formerly known as the Powerteam.
 
 ## Archive Workflow
 
+- [[docs/guides/media-ingest-and-chunking|Media Ingest and Episode Chunking]] - readiness, storage, and split guidance.
 - [[transcripts/README|Transcripts]] - tracked raw and reviewed transcript organization.
 - [[scripts/transcription/README|Local Video Transcription Workflow]] - executable local workflow.
 - [[docs/goals/whisper-transcription|Local Whisper Transcription]] - workstation setup and model notes.

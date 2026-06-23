@@ -5,6 +5,9 @@ Related: [[docs/goals/whisper-transcription|Local Whisper Transcription]] | [[do
 This workflow is intentionally split into small stages. Run one stage, inspect
 the output, then continue.
 
+Before importing a large archive, read
+[[docs/guides/media-ingest-and-chunking|Media Ingest and Episode Chunking]].
+
 The scripts work on macOS and Linux. A CUDA workstation is substantially
 faster for the strongest models, but CPU transcription is supported for setup
 and smaller jobs.
@@ -130,3 +133,6 @@ targeted review of uncertain dialogue.
 - Whisper primarily transcribes speech. Add caption-style cues such as
   `[door closes]`, `[dramatic music]`, or `[indistinct shouting]` during review;
   do not treat automatically invented sound labels as archival fact.
+- Split multi-episode source movies at known episode boundaries for easier
+  retries and review. Long files do not need arbitrary one-hour splits for
+  Whisper itself.

@@ -2,6 +2,9 @@
 
 Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[transcripts/README|Transcripts]]
 
+See [[docs/guides/media-ingest-and-chunking|Media Ingest and Episode Chunking]]
+before copying or splitting a large batch.
+
 Everything in this directory except this README is ignored by Git.
 
 - `inbox/`: drop camcorder movies and other source video/audio here.
