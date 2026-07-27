@@ -1,6 +1,8 @@
 # Local Media Drop Zone
 
-Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[transcripts/README|Transcripts]]
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] |
+[[scripts/scenes/README|Local Scene Detection and Clip Export]] |
+[[transcripts/README|Transcripts]]
 
 See [[docs/guides/media-ingest-and-chunking|Media Ingest and Episode Chunking]]
 before copying or splitting a large batch.

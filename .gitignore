@@ -1,5 +1,6 @@
 .venv-transcription/
 data/transcription/
+data/scenes/
 __pycache__/
 
 # Local source media can be many gigabytes. Keep every file below these

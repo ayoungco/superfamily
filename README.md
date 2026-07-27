@@ -17,6 +17,8 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - Reconnect with this universe by using agents as a creative tool for self-learning.
 - Recover dialogue and story context through [[transcripts/README|Transcripts]] and the
   [[scripts/transcription/README|Local Video Transcription Workflow]].
+- Detect visual cuts and export local clips with the
+  [[scripts/scenes/README|Scene Detection and Clip Export Workflow]].
 
 ## Influence
 
