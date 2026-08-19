@@ -1,15 +1,13 @@
 .venv-transcription/
-data/transcription/
-data/scenes/
 __pycache__/
-
-# Local source media can be many gigabytes. Keep every file below these
-# drop zones out of Git; their README files document the intended layout.
-media/*
-!media/README.md
-video/*
-!video/README.md
-
-# Python/tool caches.
 *.py[cod]
 .DS_Store
+
+# Generated transcription/scene-detection pipeline output: reproducible from
+# source video and can be large. Reviewed and raw transcript text stays
+# tracked (content/transcripts/raw, content/transcripts/reviewed).
+content/transcripts/manifest.tsv
+content/transcripts/probes/
+content/transcripts/audio/
+content/transcripts/logs/
+content/transcripts/scenes/

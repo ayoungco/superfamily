@@ -1,4 +1,26 @@
-# The Super Family
+# Super Family TV Series
+
+The Super Family is a crossover universe I created in my youth.
+
+The Super Family is one of my childhood personal universes. The origins are a long story, maybe I should be creating a VitePress or Obsidian repo about them as well.
+
+Lots of crossovers to "worlds" ala Kingdom Hearts, but predating that concept... unless it occurred in parallel thinking?
+
+## Drive mounts
+
+```
+sudo mount -t cifs //10.0.0.3/creative /mnt/creative -o username=YOUR_USERNAME,password=YOUR_PASSWORD,vers=3.0
+```
+
+
+
+## Work notes
+
+- Use scanned drawings and other assets
+- Try a good text to speech narration using voice clips from young me
+- Train young me as an AI voice - this would be absolutely bonkers
+- [Text-to-speech model](https://www.reddit.com/r/singularity/comments/1l46lz5/introducing_eleven_v3_alpha_the_most_expressive/?share_id=hnjoc5hin-HDZBnVmmJN9&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1) - may be good for producing additional narration in segments that are under-explained
+- Use Sora
 
 Formerly known as "The Powerteam"
 
@@ -20,7 +42,46 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - Detect visual cuts and export local clips with the
   [[scripts/scenes/README|Scene Detection and Clip Export Workflow]].
 
-## Influence
+
+# Super Family Vault Index
+
+This vault collects the history, stories, production notes, research, and
+archival material for [[The exact details of the Super Family|The Super Family]],
+formerly known as the Powerteam.
+
+## Start Here
+
+- [[The exact details of the Super Family]] - the origin and early history.
+- [[Super Family Prologue]] - the cosmological framing for the setting.
+- [[The Return of Dr. Seinyor]] - a later continuation after the team's disappearance.
+- [[Dr. Seinyor]] - current character and reconstruction notes.
+
+## World And Design
+
+- [[content/ship|The Ship]] - precursor to the AC.
+- [[Iguazu Falls]] - AC design, environments, and reconstruction ideas.
+- [[LEGO Adventurers Jungle Theme]] - visual and historical inspiration.
+- [[whimsy|Whimsical locations]] - real-world fantasy landscape references.
+- [[Anagrams]] - name and phrase experiments.
+
+## Archive Workflow
+
+- [[docs/media-ingest-and-chunking|Media Ingest and Episode Chunking]] - readiness, storage, and split guidance.
+- [[content/transcripts/README|Transcripts]] - tracked raw and reviewed transcript organization, and pipeline output layout.
+- [[scripts/transcription/README|Local Video Transcription Workflow]] - executable local workflow.
+- [[scripts/scenes/README|Local Scene Detection and Clip Export]] - detect visual cuts and export ignored local clips.
+- [[docs/whisper-transcription|Local Whisper Transcription]] - workstation setup and model notes.
+- [[docs/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] - detailed archival guidance.
+- [[docs/voice-generative|Voice reconstruction goal]] - possible later use of cleaned speech.
+
+## Project Notes
+
+- [Repository overview](README.md)
+- [[TODO|Current tasks]]
+- [[Graph]] - notes on using Markdown and Obsidian as a knowledge graph.
+
+
+## Influences
 
 - LEGO Island
 - Gateway 2000
@@ -44,3 +105,5 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - Spyro the Dragon
 - Gex
 - Transformers Armada
+
+# Rules 

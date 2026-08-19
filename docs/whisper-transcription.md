@@ -1,6 +1,6 @@
 # Local Whisper Transcription
 
-Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[docs/goals/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[transcripts/README|Transcripts]] | [[media/README|Local Media Drop Zone]]
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[docs/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[content/transcripts/README|Transcripts]]
 
 ComfyUI is **not the right tool for audio transcription** by default. Use a
 local Whisper workflow instead.
@@ -46,32 +46,32 @@ If GPU memory gets tight, try `medium` or lower `--beam-size`.
 Discover files:
 
 ```bash
-bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv data/videos
+bash scripts/transcription/00-discover-videos.sh -o content/transcripts/manifest.tsv /mnt/creative/projects/superfamily
 ```
 
 Probe audio streams:
 
 ```bash
-bash scripts/transcription/10-probe-audio.sh -m data/transcription/manifest.tsv
+bash scripts/transcription/10-probe-audio.sh -m content/transcripts/manifest.tsv
 ```
 
 Extract the first audio track:
 
 ```bash
-bash scripts/transcription/20-extract-audio.sh -m data/transcription/manifest.tsv --track 0
+bash scripts/transcription/20-extract-audio.sh -m content/transcripts/manifest.tsv --track 0
 ```
 
 Clean for speech:
 
 ```bash
-bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv --profile speech
+bash scripts/transcription/30-clean-audio.sh -m content/transcripts/manifest.tsv --profile speech
 ```
 
 Transcribe locally:
 
 ```bash
 python scripts/transcription/40-transcribe-local.py \
-  -m data/transcription/manifest.tsv \
+  -m content/transcripts/manifest.tsv \
   --profile speech \
   --model large-v3 \
   --device cuda \
@@ -80,7 +80,7 @@ python scripts/transcription/40-transcribe-local.py \
   --vad-filter
 ```
 
-Outputs go to `transcripts/raw` as `.txt`, `.srt`, `.vtt`,
+Outputs go to `content/transcripts/raw` as `.txt`, `.srt`, `.vtt`,
 `.json`, and `.raw.md`.
 
 ## Cleanup Profiles

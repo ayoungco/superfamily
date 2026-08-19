@@ -12,9 +12,9 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Transcribe cleaned audio files locally with faster-whisper."
     )
-    parser.add_argument("-m", "--manifest", default="data/transcription/manifest.tsv")
-    parser.add_argument("-i", "--audio-dir", default="data/transcription/audio/cleaned")
-    parser.add_argument("-o", "--output-dir", default="transcripts/raw")
+    parser.add_argument("-m", "--manifest", default="content/transcripts/manifest.tsv")
+    parser.add_argument("-i", "--audio-dir", default="content/transcripts/audio/cleaned")
+    parser.add_argument("-o", "--output-dir", default="content/transcripts/raw")
     parser.add_argument("--profile", default="speech")
     parser.add_argument("--model", default="large-v3")
     parser.add_argument("--device", default="cuda")

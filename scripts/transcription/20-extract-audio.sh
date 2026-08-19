@@ -11,8 +11,8 @@ track at 48 kHz PCM for later cleanup.
 USAGE
 }
 
-manifest="data/transcription/manifest.tsv"
-out_dir="data/transcription/audio/raw"
+manifest="content/transcripts/manifest.tsv"
+out_dir="content/transcripts/audio/raw"
 track_index="0"
 force="0"
 

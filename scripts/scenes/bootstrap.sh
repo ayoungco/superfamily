@@ -11,21 +11,19 @@ for tool in ffmpeg ffprobe python3; do
 done
 
 mkdir -p \
-  "$repo_root/media/inbox" \
-  "$repo_root/data/scenes/detections" \
-  "$repo_root/data/scenes/clips" \
-  "$repo_root/data/scenes/logs"
+  "$repo_root/content/transcripts/scenes/detections" \
+  "$repo_root/content/transcripts/scenes/clips" \
+  "$repo_root/content/transcripts/scenes/logs"
 
 cat <<EOF
 
 Scene workspace is ready.
 
-1. Drop source files into: $repo_root/media/inbox
-2. Create or reuse the video manifest:
-   bash scripts/transcription/00-discover-videos.sh media/inbox
-3. Detect scenes:
+1. Create or reuse the video manifest, pointed straight at your source media:
+   bash scripts/transcription/00-discover-videos.sh /mnt/creative/projects/superfamily
+2. Detect scenes:
    python3 scripts/scenes/10-detect-scenes.py
-4. Review data/scenes/detections, then export:
+3. Review content/transcripts/scenes/detections, then export:
    python3 scripts/scenes/20-export-clips.py
 
 Source media, scene metadata, logs, and exported clips are ignored by Git.

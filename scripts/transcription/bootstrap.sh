@@ -13,15 +13,12 @@ elif [ "$#" -gt 0 ]; then
 fi
 
 mkdir -p \
-  "$repo_root/media/inbox" \
-  "$repo_root/media/archive" \
-  "$repo_root/data/transcription/audio/raw" \
-  "$repo_root/data/transcription/audio/cleaned" \
-  "$repo_root/data/transcription/probes" \
-  "$repo_root/data/transcription/logs" \
-  "$repo_root/transcripts/raw" \
-  "$repo_root/transcripts/reviewed" \
-  "$repo_root/transcripts/context"
+  "$repo_root/content/transcripts/audio/raw" \
+  "$repo_root/content/transcripts/audio/cleaned" \
+  "$repo_root/content/transcripts/probes" \
+  "$repo_root/content/transcripts/logs" \
+  "$repo_root/content/transcripts/raw" \
+  "$repo_root/content/transcripts/reviewed"
 
 if [ ! -x "$venv/bin/python" ]; then
   python3 -m venv "$venv"
@@ -39,11 +36,12 @@ cat <<EOF
 
 Transcription workspace is ready.
 
-1. Drop source files into: $repo_root/media/inbox
+1. Point discovery straight at your source media (no need to copy it into the
+   repo): bash scripts/transcription/00-discover-videos.sh /mnt/creative/projects/superfamily
 2. Activate the environment: source $venv/bin/activate
-3. Discover files:
-   bash scripts/transcription/00-discover-videos.sh media/inbox
 
-Source media, extracted audio, probes, logs, and the venv are ignored by Git.
-Files under transcripts/ are intended to be reviewed and committed.
+Extracted audio, probes, logs, and the venv are ignored by Git. Source video
+is never copied locally; the manifest stores absolute paths. Files under
+content/transcripts/raw and content/transcripts/reviewed are intended to be
+reviewed and committed.
 EOF

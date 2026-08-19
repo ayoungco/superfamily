@@ -15,9 +15,9 @@ Profiles:
 USAGE
 }
 
-manifest="data/transcription/manifest.tsv"
-in_dir="data/transcription/audio/raw"
-out_dir="data/transcription/audio/cleaned"
+manifest="content/transcripts/manifest.tsv"
+in_dir="content/transcripts/audio/raw"
+out_dir="content/transcripts/audio/cleaned"
 profile="speech"
 force="0"
 

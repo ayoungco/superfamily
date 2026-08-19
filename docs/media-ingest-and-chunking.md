@@ -8,7 +8,7 @@ tags:
 
 # Media Ingest and Episode Chunking
 
-Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[media/README|Local Media Drop Zone]] | [[transcripts/README|Transcripts]] | [[docs/goals/audio-extraction-and-transcription|Audio extraction notes]]
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]] | [[content/transcripts/README|Transcripts]] | [[docs/audio-extraction-and-transcription|Audio extraction notes]]
 
 ## Current Readiness
 
@@ -16,9 +16,12 @@ As of June 23, 2026, the local Mac is ready to process media:
 
 - FFmpeg and ffprobe are installed.
 - `.venv-transcription` exists and can import `faster-whisper`.
-- Source media and generated audio under `media/` and `data/transcription/`
-  are ignored by Git.
-- Text, caption, and JSON outputs under `transcripts/` can be committed.
+- Source video stays on external storage (for example
+  `/mnt/creative/projects/superfamily`); it is never copied into the repo.
+- Generated audio, probes, and logs under `content/transcripts/` are ignored
+  by Git.
+- Text, caption, and JSON outputs under `content/transcripts/raw` and
+  `content/transcripts/reviewed` can be committed.
 
 The selected Whisper model is downloaded on the first transcription run. A
 model download can be several gigabytes, depending on the model. Keep the Mac
@@ -32,7 +35,7 @@ boundaries is recommended when those boundaries are known.
 
 Episode-sized sources provide:
 
-- filenames and transcripts that match `data/super_family_episodes_v2.csv`;
+- filenames and transcripts that match `content/data/super_family_episodes_v2.csv`;
 - smaller retry units if extraction or transcription is interrupted;
 - easier review, correction, and comparison with the episode list;
 - timestamps that begin at zero for each episode;
@@ -60,41 +63,41 @@ Keeping originals, episode derivatives, and WAVs can temporarily require more
 than twice the source-video size. Check free space before processing a batch:
 
 ```bash
-df -h .
-du -sh media data/transcription ~/.cache/huggingface 2>/dev/null
+df -h /mnt/creative
+du -sh content/transcripts ~/.cache/huggingface 2>/dev/null
 ```
 
-An external drive can hold the originals. The discovery manifest stores
-absolute paths, so copying those originals into the repository is optional.
+Originals live on the external share and are never copied into the
+repository; the discovery manifest stores absolute paths to them.
 
 ## Preferred Ingest Layout
 
 ```text
-media/
-  archive/       untouched originals
-  inbox/         episode-sized working video files
-data/transcription/
-  audio/raw/     preservation WAVs
-  audio/cleaned/ speech-oriented WAVs
-  probes/        codec and stream metadata
-transcripts/
-  raw/           machine transcripts
-  reviewed/      corrected archival transcripts
+/mnt/creative/projects/superfamily/   untouched originals and split episodes
+                                       (external, not in the repo)
+content/transcripts/
+  audio/raw/     preservation WAVs (generated, ignored)
+  audio/cleaned/ speech-oriented WAVs (generated, ignored)
+  probes/        codec and stream metadata (generated, ignored)
+  raw/           machine transcripts (tracked)
+  reviewed/      corrected archival transcripts (tracked)
 ```
 
-All media and generated audio above are local-only. The transcript directories
-are tracked.
+Everything under `content/transcripts/` except `raw/` and `reviewed/` is
+local-only.
 
 ## Splitting Without Re-encoding
 
-Use stream copying to avoid generation loss and a long video encode. This
-example divides a source near one-hour intervals at safe keyframes:
+Use stream copying to avoid generation loss and a long video encode. Split
+episodes stay on the external share alongside the source, next to it rather
+than in the repo. This example divides a source near one-hour intervals at
+safe keyframes:
 
 ```bash
-mkdir -p media/inbox/SF01
-ffmpeg -hide_banner -i "media/archive/source.mov" \
+mkdir -p /mnt/creative/projects/superfamily/episodes/SF01
+ffmpeg -hide_banner -i "/mnt/creative/projects/superfamily/source.mov" \
   -map 0 -c copy -f segment -segment_time 3600 -reset_timestamps 1 \
-  "media/inbox/SF01/SF01-part-%02d.mov"
+  "/mnt/creative/projects/superfamily/episodes/SF01/SF01-part-%02d.mov"
 ```
 
 The segment muxer cuts at available keyframes, so lengths will not be exactly
@@ -105,11 +108,11 @@ For known editorial boundaries, create each episode explicitly. Replace the
 timestamps with reviewed start times:
 
 ```bash
-ffmpeg -hide_banner -ss 00:00:00 -i "media/archive/source.mov" \
-  -t 00:56:00 -map 0 -c copy "media/inbox/SF01-part-1.mov"
+ffmpeg -hide_banner -ss 00:00:00 -i "/mnt/creative/projects/superfamily/source.mov" \
+  -t 00:56:00 -map 0 -c copy "/mnt/creative/projects/superfamily/episodes/SF01-part-1.mov"
 
-ffmpeg -hide_banner -ss 00:56:00 -i "media/archive/source.mov" \
-  -map 0 -c copy "media/inbox/SF01-part-2.mov"
+ffmpeg -hide_banner -ss 00:56:00 -i "/mnt/creative/projects/superfamily/source.mov" \
+  -map 0 -c copy "/mnt/creative/projects/superfamily/episodes/SF01-part-2.mov"
 ```
 
 Stream-copy cuts may move slightly to a nearby keyframe. Listen around every
@@ -121,7 +124,7 @@ Start with one representative episode, not the entire archive:
 
 ```bash
 bash scripts/transcription/bootstrap.sh --install
-bash scripts/transcription/00-discover-videos.sh media/inbox
+bash scripts/transcription/00-discover-videos.sh /mnt/creative/projects/superfamily
 bash scripts/transcription/10-probe-audio.sh
 bash scripts/transcription/20-extract-audio.sh --track 0
 bash scripts/transcription/30-clean-audio.sh --profile speech
@@ -133,7 +136,7 @@ python scripts/transcription/40-transcribe-local.py \
   --device cpu \
   --compute-type int8 \
   --language en \
-  --initial-prompt-file transcripts/context/super-family.txt \
+  --initial-prompt-file scripts/transcription/super-family.txt \
   --vad-filter
 ```
 
@@ -158,13 +161,13 @@ python scripts/transcription/40-transcribe-local.py \
   --device cuda \
   --compute-type float16 \
   --language en \
-  --initial-prompt-file transcripts/context/super-family.txt \
+  --initial-prompt-file scripts/transcription/super-family.txt \
   --vad-filter
 ```
 
 If GPU memory is tight, retry with `--model medium`, reduce `--beam-size`, or
-use `--compute-type int8_float16`. Keep the media files, extracted WAVs, and
-model cache local to that workstation if the goal is to avoid cloud processing.
+use `--compute-type int8_float16`. Keep the extracted WAVs and model cache
+local to that workstation if the goal is to avoid cloud processing.
 
 ## Pilot Checklist
 

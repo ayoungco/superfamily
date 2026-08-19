@@ -9,12 +9,12 @@ Usage:
 Find video files and write a manifest for the later transcription stages.
 
 Examples:
-  scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv media/inbox
+  scripts/transcription/00-discover-videos.sh -o content/transcripts/manifest.tsv /mnt/creative/projects/superfamily
   scripts/transcription/00-discover-videos.sh movie1.mp4 movie2.m4v
 USAGE
 }
 
-output="data/transcription/manifest.tsv"
+output="content/transcripts/manifest.tsv"
 
 while getopts ":o:h" opt; do
   case "$opt" in
@@ -39,7 +39,7 @@ trap 'rm -f "$tmp"' EXIT
 
 for input in "$@"; do
   if [ -d "$input" ]; then
-    find "$input" -type f \( \
+    find -L "$input" -type f \( \
       -iname '*.mp4' -o -iname '*.m4v' -o -iname '*.mov' -o -iname '*.mkv' -o -iname '*.avi' -o -iname '*.webm' \
     \) -print
   elif [ -f "$input" ]; then

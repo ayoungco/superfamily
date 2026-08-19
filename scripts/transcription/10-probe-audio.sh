@@ -10,8 +10,8 @@ Run ffprobe for every source video in the manifest.
 USAGE
 }
 
-manifest="data/transcription/manifest.tsv"
-out_dir="data/transcription/probes"
+manifest="content/transcripts/manifest.tsv"
+out_dir="content/transcripts/probes"
 
 while getopts ":m:o:h" opt; do
   case "$opt" in

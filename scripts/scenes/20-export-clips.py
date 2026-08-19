@@ -16,19 +16,19 @@ def parse_args() -> argparse.Namespace:
         "-m",
         "--manifest",
         type=Path,
-        default=Path("data/transcription/manifest.tsv"),
+        default=Path("content/transcripts/manifest.tsv"),
     )
     parser.add_argument(
         "-d",
         "--detections-dir",
         type=Path,
-        default=Path("data/scenes/detections"),
+        default=Path("content/transcripts/scenes/detections"),
     )
     parser.add_argument(
         "-o",
         "--output-dir",
         type=Path,
-        default=Path("data/scenes/clips"),
+        default=Path("content/transcripts/scenes/clips"),
     )
     parser.add_argument(
         "--mode",

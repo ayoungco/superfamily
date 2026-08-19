@@ -20,14 +20,14 @@ def parse_args() -> argparse.Namespace:
         "-m",
         "--manifest",
         type=Path,
-        default=Path("data/transcription/manifest.tsv"),
+        default=Path("content/transcripts/manifest.tsv"),
         help="Video manifest created by 00-discover-videos.sh.",
     )
     parser.add_argument(
         "-o",
         "--output-dir",
         type=Path,
-        default=Path("data/scenes/detections"),
+        default=Path("content/transcripts/scenes/detections"),
     )
     parser.add_argument(
         "--threshold",

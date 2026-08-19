@@ -1,8 +1,6 @@
 # Tasks
 
-- [ ] Extract audio from video files and transcribe it for context using the
-  [[scripts/transcription/README|Local Video Transcription Workflow]].
-- [ ] Review machine output under [[transcripts/README|Transcripts]] and add verified sound cues.
-- [ ] Link recurring characters, locations, artifacts, and events as notes are reviewed.
-
-See [[Vault Index]] for the current archive map.
+- [x] Separate SF and Powerteam movies into 1-hour episodes
+- [ ] Export 1 hour episodes from Premiere, don't worry about intro/outro, just get the content into bite-sized chunks for easier processing and transcription.
+- [ ] Meaningful titles for each episode
+- [ ] One audio channel drops out in some movies, needs restored

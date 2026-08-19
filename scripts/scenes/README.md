@@ -1,21 +1,21 @@
 # Local Scene Detection and Clip Export
 
-Related: [[scripts/transcription/README|Local Video Transcription Workflow]] |
-[[media/README|Local Media Drop Zone]]
+Related: [[scripts/transcription/README|Local Video Transcription Workflow]]
 
 This workflow detects visual cuts in large local movie files, writes small TSV
 boundary files for review, then exports each detected scene as an MP4 clip.
 It runs locally with FFmpeg and does not use a cloud service or AI model.
 
-Generated boundaries and clips are under `data/scenes/` and ignored by Git.
-Original movies remain untouched.
+Generated boundaries and clips are under `content/transcripts/scenes/` and
+ignored by Git. Original movies remain untouched and are never copied into
+the repo.
 
 ## 1. Prepare
 
 ```bash
 bash scripts/scenes/bootstrap.sh
 bash scripts/transcription/00-discover-videos.sh \
-  -o data/transcription/manifest.tsv media/inbox
+  -o content/transcripts/manifest.tsv /mnt/creative/projects/superfamily
 ```
 
 The existing transcription manifest is reused so each movie has the same stable
@@ -38,7 +38,7 @@ python3 scripts/scenes/10-detect-scenes.py \
   --force
 ```
 
-Review the TSV files in `data/scenes/detections/`. Each row contains the clip
+Review the TSV files in `content/transcripts/scenes/detections/`. Each row contains the clip
 number, start, end, and duration in seconds.
 
 Scene detection is visual. It can miss dissolves and fades, and shaky camcorder
@@ -53,7 +53,7 @@ Accurate exports re-encode to H.264 video and AAC audio:
 python3 scripts/scenes/20-export-clips.py
 ```
 
-Outputs are grouped by movie under `data/scenes/clips/`. Existing clips are
+Outputs are grouped by movie under `content/transcripts/scenes/clips/`. Existing clips are
 skipped unless `--force` is supplied.
 
 For a much faster export that avoids re-encoding:
@@ -72,4 +72,5 @@ frame. Use the default encode mode when precise scene boundaries matter.
   the size of the source material.
 - Detection itself is CPU-based and does not require the transcription venv or
   RTX 3060. The scripts may still be run while that venv is active.
-- Everything under `media/` and `data/scenes/` remains untracked.
+- Everything under `content/transcripts/scenes/` remains untracked, and source
+  movies are read directly from external storage rather than copied in.

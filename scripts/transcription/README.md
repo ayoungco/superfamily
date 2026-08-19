@@ -1,12 +1,12 @@
 # Local Video Transcription Workflow
 
-Related: [[docs/goals/whisper-transcription|Local Whisper Transcription]] | [[docs/goals/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[transcripts/README|Transcripts]] | [[media/README|Local Media Drop Zone]]
+Related: [[docs/whisper-transcription|Local Whisper Transcription]] | [[docs/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] | [[content/transcripts/README|Transcripts]]
 
 This workflow is intentionally split into small stages. Run one stage, inspect
 the output, then continue.
 
 Before importing a large archive, read
-[[docs/guides/media-ingest-and-chunking|Media Ingest and Episode Chunking]].
+[[docs/media-ingest-and-chunking|Media Ingest and Episode Chunking]].
 
 The scripts work on macOS and Linux. A CUDA workstation is substantially
 faster for the strongest models, but CPU transcription is supported for setup
@@ -20,8 +20,10 @@ Bootstrap the local directories and Python environment:
 bash scripts/transcription/bootstrap.sh
 ```
 
-This creates ignored local work areas under `media/` and
-`data/transcription/`, plus tracked transcript folders under `transcripts/`.
+This creates ignored local work areas under `content/transcripts/{audio,probes,logs}`,
+plus tracked transcript folders at `content/transcripts/{raw,reviewed}`. It
+does not copy or stage source video locally — every stage reads directly from
+wherever your source files live (for example, `/mnt/creative/projects/superfamily`).
 It does not download Python packages unless `--install` is supplied.
 
 ```bash
@@ -44,8 +46,8 @@ For the 3060 12 GB, start with `large-v3`. If memory gets tight, use
 Pass a directory or an explicit list of files:
 
 ```bash
-bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv media/inbox
-bash scripts/transcription/00-discover-videos.sh -o data/transcription/manifest.tsv video1.mp4 video2.m4v
+bash scripts/transcription/00-discover-videos.sh -o content/transcripts/manifest.tsv /mnt/creative/projects/superfamily
+bash scripts/transcription/00-discover-videos.sh -o content/transcripts/manifest.tsv video1.mp4 video2.m4v
 ```
 
 If you prefer direct execution, run `chmod +x scripts/transcription/*.sh`
@@ -54,39 +56,39 @@ once on the Fedora machine.
 ## 3. Probe Audio Streams
 
 ```bash
-bash scripts/transcription/10-probe-audio.sh -m data/transcription/manifest.tsv
+bash scripts/transcription/10-probe-audio.sh -m content/transcripts/manifest.tsv
 ```
 
-Review `data/transcription/probes/*.ffprobe.txt` before extraction if a video
+Review `content/transcripts/probes/*.ffprobe.txt` before extraction if a video
 may have multiple audio tracks.
 
 ## 4. Extract Preservation WAVs
 
 ```bash
-bash scripts/transcription/20-extract-audio.sh -m data/transcription/manifest.tsv --track 0
+bash scripts/transcription/20-extract-audio.sh -m content/transcripts/manifest.tsv --track 0
 ```
 
-This writes 48 kHz PCM WAVs under `data/transcription/audio/raw`.
+This writes 48 kHz PCM WAVs under `content/transcripts/audio/raw`.
 
 ## 5. Make Speech-Cleaned WAVs
 
 Start with the default `speech` profile:
 
 ```bash
-bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv --profile speech
+bash scripts/transcription/30-clean-audio.sh -m content/transcripts/manifest.tsv --profile speech
 ```
 
 If the cleaned audio sounds metallic or transcription quality drops, run a
 gentler pass:
 
 ```bash
-bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv --profile light
+bash scripts/transcription/30-clean-audio.sh -m content/transcripts/manifest.tsv --profile light
 ```
 
 For a no-denoise baseline:
 
 ```bash
-bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv --profile normalized
+bash scripts/transcription/30-clean-audio.sh -m content/transcripts/manifest.tsv --profile normalized
 ```
 
 ## 6. Transcribe Locally
@@ -94,7 +96,7 @@ bash scripts/transcription/30-clean-audio.sh -m data/transcription/manifest.tsv 
 ```bash
 source .venv-transcription/bin/activate
 python scripts/transcription/40-transcribe-local.py \
-  -m data/transcription/manifest.tsv \
+  -m content/transcripts/manifest.tsv \
   --profile speech \
   --model large-v3 \
   --device cuda \
@@ -103,7 +105,7 @@ python scripts/transcription/40-transcribe-local.py \
   --vad-filter
 ```
 
-Outputs are written to the tracked `transcripts/raw` directory:
+Outputs are written to the tracked `content/transcripts/raw` directory:
 
 - `.txt`
 - `.srt`
@@ -115,7 +117,7 @@ Pass series vocabulary and likely character names to Whisper:
 
 ```bash
 python scripts/transcription/40-transcribe-local.py \
-  --initial-prompt-file transcripts/context/super-family.txt \
+  --initial-prompt-file scripts/transcription/super-family.txt \
   --device cpu --compute-type int8 --model medium --vad-filter
 ```
 
