@@ -1,0 +1,624 @@
+{
+  "source_audio": "content/transcripts/audio/cleaned/sf6-return-home-part-2-053a3f2949.speech.wav",
+  "language": "en",
+  "language_probability": 1,
+  "duration": 343.072,
+  "segments": [
+    {
+      "id": 1,
+      "start": 5.74,
+      "end": 24.27,
+      "text": " I'll put some jelly on there, I'll put some jelly on there.",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 5.74,
+          "end": 6.46,
+          "word": " I'll",
+          "probability": 0.6334228515625
+        },
+        {
+          "start": 20.89,
+          "end": 21.01,
+          "word": " put",
+          "probability": 0.98779296875
+        },
+        {
+          "start": 21.01,
+          "end": 21.31,
+          "word": " some",
+          "probability": 0.94580078125
+        },
+        {
+          "start": 21.31,
+          "end": 21.79,
+          "word": " jelly",
+          "probability": 0.5673828125
+        },
+        {
+          "start": 21.79,
+          "end": 22.17,
+          "word": " on",
+          "probability": 0.91650390625
+        },
+        {
+          "start": 22.17,
+          "end": 22.27,
+          "word": " there,",
+          "probability": 0.37109375
+        },
+        {
+          "start": 22.27,
+          "end": 22.61,
+          "word": " I'll",
+          "probability": 0.723388671875
+        },
+        {
+          "start": 22.61,
+          "end": 22.75,
+          "word": " put",
+          "probability": 0.99755859375
+        },
+        {
+          "start": 22.75,
+          "end": 23.03,
+          "word": " some",
+          "probability": 0.98291015625
+        },
+        {
+          "start": 23.03,
+          "end": 23.67,
+          "word": " jelly",
+          "probability": 0.9697265625
+        },
+        {
+          "start": 23.67,
+          "end": 23.99,
+          "word": " on",
+          "probability": 0.98681640625
+        },
+        {
+          "start": 23.99,
+          "end": 24.27,
+          "word": " there.",
+          "probability": 0.92724609375
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "start": 24.51,
+      "end": 32.54,
+      "text": " Choo-choo Pikachu, choo-choo.",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 24.51,
+          "end": 25.01,
+          "word": " Choo",
+          "probability": 0.50128173828125
+        },
+        {
+          "start": 30.58,
+          "end": 31.14,
+          "word": "-choo",
+          "probability": 0.6397705078125
+        },
+        {
+          "start": 31.14,
+          "end": 31.14,
+          "word": " Pikachu,",
+          "probability": 0.45166015625
+        },
+        {
+          "start": 31.42,
+          "end": 32.04,
+          "word": " choo",
+          "probability": 0.868408203125
+        },
+        {
+          "start": 32.04,
+          "end": 32.54,
+          "word": "-choo.",
+          "probability": 0.9611002604166666
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "start": 39.77,
+      "end": 43.05,
+      "text": " Dum-dum-dee-dum-dum.",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 39.77,
+          "end": 40.49,
+          "word": " Dum",
+          "probability": 0.295654296875
+        },
+        {
+          "start": 40.49,
+          "end": 41.37,
+          "word": "-dum",
+          "probability": 0.7819010416666666
+        },
+        {
+          "start": 41.37,
+          "end": 41.83,
+          "word": "-dee",
+          "probability": 0.7159830729166666
+        },
+        {
+          "start": 41.83,
+          "end": 42.27,
+          "word": "-dum",
+          "probability": 0.9303385416666666
+        },
+        {
+          "start": 42.27,
+          "end": 43.05,
+          "word": "-dum.",
+          "probability": 0.9690755208333334
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "start": 43.53,
+      "end": 47.13,
+      "text": " Dum-dum-dum-dum-dum-dee-dum-dum-dum.",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 43.53,
+          "end": 44.25,
+          "word": " Dum",
+          "probability": 0.48779296875
+        },
+        {
+          "start": 44.25,
+          "end": 44.59,
+          "word": "-dum",
+          "probability": 0.8732096354166666
+        },
+        {
+          "start": 44.59,
+          "end": 45.03,
+          "word": "-dum",
+          "probability": 0.7823893229166666
+        },
+        {
+          "start": 45.03,
+          "end": 45.17,
+          "word": "-dum",
+          "probability": 0.9510091145833334
+        },
+        {
+          "start": 45.17,
+          "end": 45.55,
+          "word": "-dum",
+          "probability": 0.728271484375
+        },
+        {
+          "start": 45.55,
+          "end": 45.93,
+          "word": "-dee",
+          "probability": 0.5352783203125
+        },
+        {
+          "start": 45.93,
+          "end": 46.29,
+          "word": "-dum",
+          "probability": 0.951171875
+        },
+        {
+          "start": 46.29,
+          "end": 46.71,
+          "word": "-dum",
+          "probability": 0.9044596354166666
+        },
+        {
+          "start": 46.71,
+          "end": 47.13,
+          "word": "-dum.",
+          "probability": 0.8214518229166666
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "start": 47.37,
+      "end": 50.07,
+      "text": " Dum-dum-dum-dum-dum-dum.",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 47.37,
+          "end": 47.93,
+          "word": " Dum",
+          "probability": 0.331298828125
+        },
+        {
+          "start": 47.93,
+          "end": 48.35,
+          "word": "-dum",
+          "probability": 0.9796549479166666
+        },
+        {
+          "start": 48.35,
+          "end": 48.85,
+          "word": "-dum",
+          "probability": 0.9256184895833334
+        },
+        {
+          "start": 48.85,
+          "end": 48.97,
+          "word": "-dum",
+          "probability": 0.91162109375
+        },
+        {
+          "start": 48.97,
+          "end": 49.39,
+          "word": "-dum",
+          "probability": 0.884765625
+        },
+        {
+          "start": 49.39,
+          "end": 50.07,
+          "word": "-dum.",
+          "probability": 0.8486328125
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "start": 50.61,
+      "end": 52.33,
+      "text": " What are you doing, dear?",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 50.61,
+          "end": 50.77,
+          "word": " What",
+          "probability": 0.890625
+        },
+        {
+          "start": 50.77,
+          "end": 51.61,
+          "word": " are",
+          "probability": 0.9833984375
+        },
+        {
+          "start": 51.61,
+          "end": 51.69,
+          "word": " you",
+          "probability": 0.99267578125
+        },
+        {
+          "start": 51.69,
+          "end": 52.03,
+          "word": " doing,",
+          "probability": 0.99072265625
+        },
+        {
+          "start": 52.11,
+          "end": 52.33,
+          "word": " dear?",
+          "probability": 0.9541015625
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "start": 53.67,
+      "end": 58.49,
+      "text": " Nothing, just putting Pikachu's cake, I mean pie in the...",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 53.67,
+          "end": 54.39,
+          "word": " Nothing,",
+          "probability": 0.97802734375
+        },
+        {
+          "start": 54.51,
+          "end": 54.81,
+          "word": " just",
+          "probability": 0.8466796875
+        },
+        {
+          "start": 54.81,
+          "end": 55.13,
+          "word": " putting",
+          "probability": 0.98828125
+        },
+        {
+          "start": 55.13,
+          "end": 55.91,
+          "word": " Pikachu's",
+          "probability": 0.876708984375
+        },
+        {
+          "start": 55.91,
+          "end": 56.19,
+          "word": " cake,",
+          "probability": 0.83251953125
+        },
+        {
+          "start": 56.35,
+          "end": 57.07,
+          "word": " I",
+          "probability": 0.986328125
+        },
+        {
+          "start": 57.07,
+          "end": 57.29,
+          "word": " mean",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 57.29,
+          "end": 57.67,
+          "word": " pie",
+          "probability": 0.896484375
+        },
+        {
+          "start": 57.67,
+          "end": 58.17,
+          "word": " in",
+          "probability": 0.51904296875
+        },
+        {
+          "start": 58.17,
+          "end": 58.49,
+          "word": " the...",
+          "probability": 0.54510498046875
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "start": 58.49,
+      "end": 62.62,
+      "text": " What are we gonna do today again?",
+      "avg_logprob": -0.31719925618709477,
+      "no_speech_prob": 0.05743408203125,
+      "words": [
+        {
+          "start": 58.49,
+          "end": 58.51,
+          "word": " What",
+          "probability": 0.986328125
+        },
+        {
+          "start": 61.1,
+          "end": 61.18,
+          "word": " are",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 61.18,
+          "end": 61.36,
+          "word": " we",
+          "probability": 0.998046875
+        },
+        {
+          "start": 61.36,
+          "end": 61.54,
+          "word": " gonna",
+          "probability": 0.421875
+        },
+        {
+          "start": 61.54,
+          "end": 61.8,
+          "word": " do",
+          "probability": 0.9970703125
+        },
+        {
+          "start": 61.8,
+          "end": 62.16,
+          "word": " today",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 62.16,
+          "end": 62.62,
+          "word": " again?",
+          "probability": 0.884765625
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "start": 62.62,
+      "end": 65.52,
+      "text": " I don't know.",
+      "avg_logprob": -0.43945311605930326,
+      "no_speech_prob": 0.310302734375,
+      "words": [
+        {
+          "start": 62.62,
+          "end": 63.34,
+          "word": " I",
+          "probability": 0.040496826171875
+        },
+        {
+          "start": 64.82,
+          "end": 65.34,
+          "word": " don't",
+          "probability": 0.5259246826171875
+        },
+        {
+          "start": 65.34,
+          "end": 65.52,
+          "word": " know.",
+          "probability": 0.450927734375
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "start": 65.84,
+      "end": 183.15,
+      "text": " Now do you remember how to massage people?",
+      "avg_logprob": -0.43945311605930326,
+      "no_speech_prob": 0.310302734375,
+      "words": [
+        {
+          "start": 65.84,
+          "end": 66.44,
+          "word": " Now",
+          "probability": 0.6474609375
+        },
+        {
+          "start": 179.43,
+          "end": 179.73,
+          "word": " do",
+          "probability": 0.70654296875
+        },
+        {
+          "start": 179.73,
+          "end": 179.89,
+          "word": " you",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 179.89,
+          "end": 180.47,
+          "word": " remember",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 180.47,
+          "end": 181.33,
+          "word": " how",
+          "probability": 0.7958984375
+        },
+        {
+          "start": 181.33,
+          "end": 181.85,
+          "word": " to",
+          "probability": 0.7509765625
+        },
+        {
+          "start": 181.85,
+          "end": 182.39,
+          "word": " massage",
+          "probability": 0.826171875
+        },
+        {
+          "start": 182.39,
+          "end": 183.15,
+          "word": " people?",
+          "probability": 0.6982421875
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "start": 234.43,
+      "end": 235.75,
+      "text": " Video's running over here.",
+      "avg_logprob": -0.43945311605930326,
+      "no_speech_prob": 0.310302734375,
+      "words": [
+        {
+          "start": 234.43,
+          "end": 234.89,
+          "word": " Video's",
+          "probability": 0.41107177734375
+        },
+        {
+          "start": 234.89,
+          "end": 235.11,
+          "word": " running",
+          "probability": 0.72314453125
+        },
+        {
+          "start": 235.11,
+          "end": 235.53,
+          "word": " over",
+          "probability": 0.9541015625
+        },
+        {
+          "start": 235.53,
+          "end": 235.75,
+          "word": " here.",
+          "probability": 0.97900390625
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "start": 235.83,
+      "end": 237.03,
+      "text": " We got the puppy over here.",
+      "avg_logprob": -0.43945311605930326,
+      "no_speech_prob": 0.310302734375,
+      "words": [
+        {
+          "start": 235.83,
+          "end": 236.11,
+          "word": " We",
+          "probability": 0.170654296875
+        },
+        {
+          "start": 236.11,
+          "end": 236.25,
+          "word": " got",
+          "probability": 0.7939453125
+        },
+        {
+          "start": 236.25,
+          "end": 236.39,
+          "word": " the",
+          "probability": 0.75244140625
+        },
+        {
+          "start": 236.39,
+          "end": 236.59,
+          "word": " puppy",
+          "probability": 0.329833984375
+        },
+        {
+          "start": 236.59,
+          "end": 236.83,
+          "word": " over",
+          "probability": 0.95361328125
+        },
+        {
+          "start": 236.83,
+          "end": 237.03,
+          "word": " here.",
+          "probability": 0.9775390625
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "start": 238.19,
+      "end": 238.79,
+      "text": " Hello!",
+      "avg_logprob": -0.43945311605930326,
+      "no_speech_prob": 0.310302734375,
+      "words": [
+        {
+          "start": 238.19,
+          "end": 238.79,
+          "word": " Hello!",
+          "probability": 0.11810302734375
+        }
+      ]
+    }
+  ]
+}

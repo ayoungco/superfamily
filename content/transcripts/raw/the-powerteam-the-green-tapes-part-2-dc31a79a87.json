@@ -1,0 +1,1420 @@
+{
+  "source_audio": "content/transcripts/audio/cleaned/the-powerteam-the-green-tapes-part-2-dc31a79a87.speech.wav",
+  "language": "en",
+  "language_probability": 1,
+  "duration": 1326.56,
+  "segments": [
+    {
+      "id": 1,
+      "start": 22.61,
+      "end": 26.89,
+      "text": " I'm sorry, but we have to do a song at the beginning? Thank you.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 22.61,
+          "end": 22.61,
+          "word": " I'm",
+          "probability": 0.421173095703125
+        },
+        {
+          "start": 22.61,
+          "end": 22.61,
+          "word": " sorry,",
+          "probability": 0.81884765625
+        },
+        {
+          "start": 22.77,
+          "end": 23.03,
+          "word": " but",
+          "probability": 0.97802734375
+        },
+        {
+          "start": 23.03,
+          "end": 23.99,
+          "word": " we",
+          "probability": 0.53076171875
+        },
+        {
+          "start": 23.99,
+          "end": 24.15,
+          "word": " have",
+          "probability": 0.984375
+        },
+        {
+          "start": 24.15,
+          "end": 24.27,
+          "word": " to",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 24.27,
+          "end": 24.43,
+          "word": " do",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 24.43,
+          "end": 24.51,
+          "word": " a",
+          "probability": 0.99267578125
+        },
+        {
+          "start": 24.51,
+          "end": 24.77,
+          "word": " song",
+          "probability": 0.998046875
+        },
+        {
+          "start": 24.77,
+          "end": 24.93,
+          "word": " at",
+          "probability": 0.83349609375
+        },
+        {
+          "start": 24.93,
+          "end": 25.01,
+          "word": " the",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 25.01,
+          "end": 25.31,
+          "word": " beginning?",
+          "probability": 0.9794921875
+        },
+        {
+          "start": 26.09,
+          "end": 26.59,
+          "word": " Thank",
+          "probability": 0.88916015625
+        },
+        {
+          "start": 26.59,
+          "end": 26.89,
+          "word": " you.",
+          "probability": 0.9716796875
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "start": 27.07,
+      "end": 63.9,
+      "text": " Come on, Stacie.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 27.07,
+          "end": 27.43,
+          "word": " Come",
+          "probability": 0.1695556640625
+        },
+        {
+          "start": 63.56,
+          "end": 63.6,
+          "word": " on,",
+          "probability": 0.93505859375
+        },
+        {
+          "start": 63.6,
+          "end": 63.9,
+          "word": " Stacie.",
+          "probability": 0.2680511474609375
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "start": 64.24,
+      "end": 76.3,
+      "text": " Okay, here's two dollars.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 64.24,
+          "end": 64.74,
+          "word": " Okay,",
+          "probability": 0.56591796875
+        },
+        {
+          "start": 75.56,
+          "end": 75.76,
+          "word": " here's",
+          "probability": 0.985595703125
+        },
+        {
+          "start": 75.76,
+          "end": 75.86,
+          "word": " two",
+          "probability": 0.6240234375
+        },
+        {
+          "start": 75.86,
+          "end": 76.3,
+          "word": " dollars.",
+          "probability": 0.99658203125
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "start": 76.58,
+      "end": 76.96,
+      "text": " Thanks.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 76.58,
+          "end": 76.96,
+          "word": " Thanks.",
+          "probability": 0.304443359375
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "start": 77.62,
+      "end": 78.44,
+      "text": " I'll be right back.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 77.62,
+          "end": 78.0,
+          "word": " I'll",
+          "probability": 0.991455078125
+        },
+        {
+          "start": 78.0,
+          "end": 78.02,
+          "word": " be",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 78.02,
+          "end": 78.2,
+          "word": " right",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 78.2,
+          "end": 78.44,
+          "word": " back.",
+          "probability": 0.99951171875
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "start": 100.93,
+      "end": 102.47,
+      "text": " What are you doing in the kitchen?",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 100.93,
+          "end": 101.31,
+          "word": " What",
+          "probability": 0.9072265625
+        },
+        {
+          "start": 101.31,
+          "end": 101.43,
+          "word": " are",
+          "probability": 0.943359375
+        },
+        {
+          "start": 101.43,
+          "end": 101.55,
+          "word": " you",
+          "probability": 0.9853515625
+        },
+        {
+          "start": 101.55,
+          "end": 101.79,
+          "word": " doing",
+          "probability": 0.958984375
+        },
+        {
+          "start": 101.79,
+          "end": 101.95,
+          "word": " in",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 101.95,
+          "end": 102.07,
+          "word": " the",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 102.07,
+          "end": 102.47,
+          "word": " kitchen?",
+          "probability": 0.9970703125
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "start": 102.97,
+      "end": 361.4,
+      "text": " Time to see songs with Lottie.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 102.97,
+          "end": 103.23,
+          "word": " Time",
+          "probability": 0.188720703125
+        },
+        {
+          "start": 359.9,
+          "end": 360.0,
+          "word": " to",
+          "probability": 0.98046875
+        },
+        {
+          "start": 360.0,
+          "end": 360.22,
+          "word": " see",
+          "probability": 0.66796875
+        },
+        {
+          "start": 360.22,
+          "end": 360.74,
+          "word": " songs",
+          "probability": 0.9736328125
+        },
+        {
+          "start": 360.74,
+          "end": 360.92,
+          "word": " with",
+          "probability": 0.8603515625
+        },
+        {
+          "start": 360.92,
+          "end": 361.4,
+          "word": " Lottie.",
+          "probability": 0.6690266927083334
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "start": 361.46,
+      "end": 365.04,
+      "text": " The Pulse of the show where Lottie comes out and sings a silly song.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 361.46,
+          "end": 361.82,
+          "word": " The",
+          "probability": 0.7861328125
+        },
+        {
+          "start": 361.82,
+          "end": 362.08,
+          "word": " Pulse",
+          "probability": 0.413787841796875
+        },
+        {
+          "start": 362.08,
+          "end": 362.24,
+          "word": " of",
+          "probability": 0.8896484375
+        },
+        {
+          "start": 362.24,
+          "end": 362.32,
+          "word": " the",
+          "probability": 0.9931640625
+        },
+        {
+          "start": 362.32,
+          "end": 362.58,
+          "word": " show",
+          "probability": 0.75
+        },
+        {
+          "start": 362.58,
+          "end": 362.86,
+          "word": " where",
+          "probability": 0.51904296875
+        },
+        {
+          "start": 362.86,
+          "end": 363.24,
+          "word": " Lottie",
+          "probability": 0.9977213541666666
+        },
+        {
+          "start": 363.24,
+          "end": 363.42,
+          "word": " comes",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 363.42,
+          "end": 363.8,
+          "word": " out",
+          "probability": 0.99072265625
+        },
+        {
+          "start": 363.8,
+          "end": 363.92,
+          "word": " and",
+          "probability": 0.9931640625
+        },
+        {
+          "start": 363.92,
+          "end": 364.18,
+          "word": " sings",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 364.18,
+          "end": 364.52,
+          "word": " a",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 364.52,
+          "end": 364.76,
+          "word": " silly",
+          "probability": 0.822265625
+        },
+        {
+          "start": 364.76,
+          "end": 365.04,
+          "word": " song.",
+          "probability": 0.99853515625
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "start": 365.28,
+      "end": 372.8,
+      "text": " Silly songs today.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 365.28,
+          "end": 365.78,
+          "word": " Silly",
+          "probability": 0.85693359375
+        },
+        {
+          "start": 372.08,
+          "end": 372.5,
+          "word": " songs",
+          "probability": 0.908203125
+        },
+        {
+          "start": 372.5,
+          "end": 372.8,
+          "word": " today.",
+          "probability": 0.689453125
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "start": 375.48,
+      "end": 375.7,
+      "text": " Corruption.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 375.48,
+          "end": 375.7,
+          "word": " Corruption.",
+          "probability": 0.86181640625
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "start": 376.18,
+      "end": 382.96,
+      "text": " We can't do it.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 376.18,
+          "end": 376.68,
+          "word": " We",
+          "probability": 0.96923828125
+        },
+        {
+          "start": 382.4,
+          "end": 382.64,
+          "word": " can't",
+          "probability": 0.998291015625
+        },
+        {
+          "start": 382.64,
+          "end": 382.78,
+          "word": " do",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 382.78,
+          "end": 382.96,
+          "word": " it.",
+          "probability": 0.9990234375
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "start": 386.95,
+      "end": 387.45,
+      "text": " What?",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 386.95,
+          "end": 387.45,
+          "word": " What?",
+          "probability": 0.97412109375
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "start": 393.24,
+      "end": 393.74,
+      "text": " Rock.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 393.24,
+          "end": 393.74,
+          "word": " Rock.",
+          "probability": 0.25732421875
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "start": 394.2,
+      "end": 398.82,
+      "text": " It's gonna be now!",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 394.2,
+          "end": 394.52,
+          "word": " It's",
+          "probability": 0.9853515625
+        },
+        {
+          "start": 398.36,
+          "end": 398.44,
+          "word": " gonna",
+          "probability": 0.6142578125
+        },
+        {
+          "start": 398.44,
+          "end": 398.62,
+          "word": " be",
+          "probability": 0.998046875
+        },
+        {
+          "start": 398.62,
+          "end": 398.82,
+          "word": " now!",
+          "probability": 0.48876953125
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "start": 399.06,
+      "end": 403.28,
+      "text": " It's gonna be.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 399.06,
+          "end": 399.32,
+          "word": " It's",
+          "probability": 0.966552734375
+        },
+        {
+          "start": 402.94,
+          "end": 403.08,
+          "word": " gonna",
+          "probability": 0.99658203125
+        },
+        {
+          "start": 403.08,
+          "end": 403.28,
+          "word": " be.",
+          "probability": 0.99951171875
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "start": 418.5,
+      "end": 419.88,
+      "text": " I'm not Mr. Lunt.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 418.5,
+          "end": 419.0,
+          "word": " I'm",
+          "probability": 0.948486328125
+        },
+        {
+          "start": 419.0,
+          "end": 419.16,
+          "word": " not",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 419.16,
+          "end": 419.54,
+          "word": " Mr.",
+          "probability": 0.99169921875
+        },
+        {
+          "start": 419.56,
+          "end": 419.88,
+          "word": " Lunt.",
+          "probability": 0.809326171875
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "start": 419.98,
+      "end": 830.26,
+      "text": " Here it goes again.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 419.98,
+          "end": 420.28,
+          "word": " Here",
+          "probability": 0.81103515625
+        },
+        {
+          "start": 829.66,
+          "end": 829.74,
+          "word": " it",
+          "probability": 0.69091796875
+        },
+        {
+          "start": 829.74,
+          "end": 829.96,
+          "word": " goes",
+          "probability": 0.99951171875
+        },
+        {
+          "start": 829.96,
+          "end": 830.26,
+          "word": " again.",
+          "probability": 0.9990234375
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "start": 830.76,
+      "end": 839.56,
+      "text": " I am extremely hungry.",
+      "avg_logprob": -0.2877358374355724,
+      "no_speech_prob": 0.027984619140625,
+      "words": [
+        {
+          "start": 830.76,
+          "end": 831.08,
+          "word": " I",
+          "probability": 0.96142578125
+        },
+        {
+          "start": 837.64,
+          "end": 837.86,
+          "word": " am",
+          "probability": 0.85107421875
+        },
+        {
+          "start": 837.86,
+          "end": 838.52,
+          "word": " extremely",
+          "probability": 0.984375
+        },
+        {
+          "start": 838.52,
+          "end": 839.56,
+          "word": " hungry.",
+          "probability": 0.904296875
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "start": 839.56,
+      "end": 840.2,
+      "text": " Pikachu.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 839.56,
+          "end": 840.2,
+          "word": " Pikachu.",
+          "probability": 0.5244140625
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "start": 883.85,
+      "end": 884.65,
+      "text": " It's okay.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 883.85,
+          "end": 884.37,
+          "word": " It's",
+          "probability": 0.840576171875
+        },
+        {
+          "start": 884.37,
+          "end": 884.65,
+          "word": " okay.",
+          "probability": 0.74072265625
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "start": 884.75,
+      "end": 886.05,
+      "text": " It's just one of my workers.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 884.75,
+          "end": 885.01,
+          "word": " It's",
+          "probability": 0.97607421875
+        },
+        {
+          "start": 885.01,
+          "end": 885.17,
+          "word": " just",
+          "probability": 0.990234375
+        },
+        {
+          "start": 885.17,
+          "end": 885.41,
+          "word": " one",
+          "probability": 0.9931640625
+        },
+        {
+          "start": 885.41,
+          "end": 885.49,
+          "word": " of",
+          "probability": 0.9951171875
+        },
+        {
+          "start": 885.49,
+          "end": 885.61,
+          "word": " my",
+          "probability": 0.998046875
+        },
+        {
+          "start": 885.61,
+          "end": 886.05,
+          "word": " workers.",
+          "probability": 0.97998046875
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "start": 886.43,
+      "end": 899.06,
+      "text": " You're petting her the right way.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 886.43,
+          "end": 886.89,
+          "word": " You're",
+          "probability": 0.892333984375
+        },
+        {
+          "start": 897.96,
+          "end": 898.32,
+          "word": " petting",
+          "probability": 0.61114501953125
+        },
+        {
+          "start": 898.32,
+          "end": 898.42,
+          "word": " her",
+          "probability": 0.841796875
+        },
+        {
+          "start": 898.42,
+          "end": 898.58,
+          "word": " the",
+          "probability": 0.87548828125
+        },
+        {
+          "start": 898.58,
+          "end": 898.82,
+          "word": " right",
+          "probability": 0.998046875
+        },
+        {
+          "start": 898.82,
+          "end": 899.06,
+          "word": " way.",
+          "probability": 0.9970703125
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "start": 899.64,
+      "end": 900.06,
+      "text": " You are.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 899.64,
+          "end": 899.92,
+          "word": " You",
+          "probability": 0.2271728515625
+        },
+        {
+          "start": 899.92,
+          "end": 900.06,
+          "word": " are.",
+          "probability": 0.6875
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "start": 900.14,
+      "end": 901.26,
+      "text": " At first you weren't.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 900.14,
+          "end": 900.42,
+          "word": " At",
+          "probability": 0.9921875
+        },
+        {
+          "start": 900.42,
+          "end": 900.66,
+          "word": " first",
+          "probability": 0.99853515625
+        },
+        {
+          "start": 900.66,
+          "end": 900.86,
+          "word": " you",
+          "probability": 0.72314453125
+        },
+        {
+          "start": 900.86,
+          "end": 901.26,
+          "word": " weren't.",
+          "probability": 0.940673828125
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "start": 901.64,
+      "end": 902.88,
+      "text": " That's why she didn't like.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 901.64,
+          "end": 902.16,
+          "word": " That's",
+          "probability": 0.974609375
+        },
+        {
+          "start": 902.16,
+          "end": 902.26,
+          "word": " why",
+          "probability": 0.982421875
+        },
+        {
+          "start": 902.26,
+          "end": 902.46,
+          "word": " she",
+          "probability": 0.99560546875
+        },
+        {
+          "start": 902.46,
+          "end": 902.7,
+          "word": " didn't",
+          "probability": 0.97900390625
+        },
+        {
+          "start": 902.7,
+          "end": 902.88,
+          "word": " like.",
+          "probability": 0.95458984375
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "start": 902.98,
+      "end": 913.51,
+      "text": " Don't bite him.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 902.98,
+          "end": 903.24,
+          "word": " Don't",
+          "probability": 0.997314453125
+        },
+        {
+          "start": 913.19,
+          "end": 913.31,
+          "word": " bite",
+          "probability": 0.99365234375
+        },
+        {
+          "start": 913.31,
+          "end": 913.51,
+          "word": " him.",
+          "probability": 0.9990234375
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "start": 913.71,
+      "end": 922.04,
+      "text": " It's okay.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 913.71,
+          "end": 914.01,
+          "word": " It's",
+          "probability": 0.94970703125
+        },
+        {
+          "start": 921.82,
+          "end": 922.04,
+          "word": " okay.",
+          "probability": 0.9970703125
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "start": 922.48,
+      "end": 934.7,
+      "text": " You on our Pokemon yet?",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 922.48,
+          "end": 922.62,
+          "word": " You",
+          "probability": 0.431640625
+        },
+        {
+          "start": 922.62,
+          "end": 922.76,
+          "word": " on",
+          "probability": 0.335693359375
+        },
+        {
+          "start": 933.7,
+          "end": 933.86,
+          "word": " our",
+          "probability": 0.9931640625
+        },
+        {
+          "start": 933.86,
+          "end": 934.24,
+          "word": " Pokemon",
+          "probability": 0.98486328125
+        },
+        {
+          "start": 934.24,
+          "end": 934.7,
+          "word": " yet?",
+          "probability": 0.99853515625
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "start": 935.24,
+      "end": 935.76,
+      "text": " Yes.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 935.24,
+          "end": 935.76,
+          "word": " Yes.",
+          "probability": 0.99560546875
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "start": 936.28,
+      "end": 937.0,
+      "text": " All again?",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 936.28,
+          "end": 936.72,
+          "word": " All",
+          "probability": 0.2005615234375
+        },
+        {
+          "start": 936.72,
+          "end": 937.0,
+          "word": " again?",
+          "probability": 0.87939453125
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "start": 938.32,
+      "end": 939.18,
+      "text": " Oh boy.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 938.32,
+          "end": 938.84,
+          "word": " Oh",
+          "probability": 0.91845703125
+        },
+        {
+          "start": 938.84,
+          "end": 939.18,
+          "word": " boy.",
+          "probability": 0.89599609375
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "start": 939.26,
+      "end": 942.5,
+      "text": " I missed all yours.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 939.26,
+          "end": 939.46,
+          "word": " I",
+          "probability": 0.69775390625
+        },
+        {
+          "start": 941.8,
+          "end": 942.04,
+          "word": " missed",
+          "probability": 0.310546875
+        },
+        {
+          "start": 942.04,
+          "end": 942.26,
+          "word": " all",
+          "probability": 0.9150390625
+        },
+        {
+          "start": 942.26,
+          "end": 942.5,
+          "word": " yours.",
+          "probability": 0.85693359375
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "start": 943.16,
+      "end": 944.0,
+      "text": " The Lugia one.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 943.16,
+          "end": 943.4,
+          "word": " The",
+          "probability": 0.4755859375
+        },
+        {
+          "start": 943.4,
+          "end": 943.78,
+          "word": " Lugia",
+          "probability": 0.9231770833333334
+        },
+        {
+          "start": 943.78,
+          "end": 944.0,
+          "word": " one.",
+          "probability": 0.9501953125
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "start": 944.82,
+      "end": 946.2,
+      "text": " My Lugia wasn't.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 944.82,
+          "end": 945.34,
+          "word": " My",
+          "probability": 0.99609375
+        },
+        {
+          "start": 945.34,
+          "end": 945.84,
+          "word": " Lugia",
+          "probability": 0.9308268229166666
+        },
+        {
+          "start": 945.84,
+          "end": 946.2,
+          "word": " wasn't.",
+          "probability": 0.7626953125
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "start": 946.2,
+      "end": 947.72,
+      "text": " Your Lugia wasn't.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 946.2,
+          "end": 946.56,
+          "word": " Your",
+          "probability": 0.97265625
+        },
+        {
+          "start": 946.56,
+          "end": 947.42,
+          "word": " Lugia",
+          "probability": 0.9990234375
+        },
+        {
+          "start": 947.42,
+          "end": 947.72,
+          "word": " wasn't.",
+          "probability": 0.975341796875
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "start": 948.36,
+      "end": 949.36,
+      "text": " They have those ones.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 948.36,
+          "end": 948.88,
+          "word": " They",
+          "probability": 0.07183837890625
+        },
+        {
+          "start": 948.88,
+          "end": 948.94,
+          "word": " have",
+          "probability": 0.8935546875
+        },
+        {
+          "start": 948.94,
+          "end": 949.14,
+          "word": " those",
+          "probability": 0.9697265625
+        },
+        {
+          "start": 949.14,
+          "end": 949.36,
+          "word": " ones.",
+          "probability": 0.6806640625
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "start": 953.63,
+      "end": 954.59,
+      "text": " I hide in you.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 953.63,
+          "end": 953.77,
+          "word": " I",
+          "probability": 0.99072265625
+        },
+        {
+          "start": 953.77,
+          "end": 954.11,
+          "word": " hide",
+          "probability": 0.1824951171875
+        },
+        {
+          "start": 954.11,
+          "end": 954.33,
+          "word": " in",
+          "probability": 0.457763671875
+        },
+        {
+          "start": 954.33,
+          "end": 954.59,
+          "word": " you.",
+          "probability": 0.92333984375
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "start": 1293.51,
+      "end": 1294.03,
+      "text": " Jessie.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 1293.51,
+          "end": 1294.03,
+          "word": " Jessie.",
+          "probability": 0.68896484375
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "start": 1298.86,
+      "end": 1299.38,
+      "text": " Identification.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 1298.86,
+          "end": 1299.38,
+          "word": " Identification.",
+          "probability": 0.9716796875
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "start": 1314.36,
+      "end": 1315.04,
+      "text": " What's the name of those?",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 1314.36,
+          "end": 1314.48,
+          "word": " What's",
+          "probability": 0.85546875
+        },
+        {
+          "start": 1314.48,
+          "end": 1314.52,
+          "word": " the",
+          "probability": 1.0
+        },
+        {
+          "start": 1314.52,
+          "end": 1314.76,
+          "word": " name",
+          "probability": 1.0
+        },
+        {
+          "start": 1314.76,
+          "end": 1314.88,
+          "word": " of",
+          "probability": 1.0
+        },
+        {
+          "start": 1314.88,
+          "end": 1315.04,
+          "word": " those?",
+          "probability": 0.97998046875
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "start": 1315.08,
+      "end": 1315.52,
+      "text": " I don't know.",
+      "avg_logprob": -0.26173857989044963,
+      "no_speech_prob": 0.1866455078125,
+      "words": [
+        {
+          "start": 1315.08,
+          "end": 1315.52,
+          "word": " I",
+          "probability": 0.0306243896484375
+        },
+        {
+          "start": 1315.52,
+          "end": 1315.52,
+          "word": " don't",
+          "probability": 0.898681640625
+        },
+        {
+          "start": 1315.52,
+          "end": 1315.52,
+          "word": " know.",
+          "probability": 0.97705078125
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "start": 1315.54,
+      "end": 1315.56,
+      "text": " What is your name?",
+      "avg_logprob": -1.366897364096208,
+      "no_speech_prob": 0.36865234375,
+      "words": [
+        {
+          "start": 1315.54,
+          "end": 1315.56,
+          "word": " What",
+          "probability": 0.01666259765625
+        },
+        {
+          "start": 1315.56,
+          "end": 1315.56,
+          "word": " is",
+          "probability": 0.05596923828125
+        },
+        {
+          "start": 1315.56,
+          "end": 1315.56,
+          "word": " your",
+          "probability": 0.317626953125
+        },
+        {
+          "start": 1315.56,
+          "end": 1315.56,
+          "word": " name?",
+          "probability": 0.414306640625
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "start": 1315.56,
+      "end": 1315.6,
+      "text": " Miss Lugia.",
+      "avg_logprob": -1.366897364096208,
+      "no_speech_prob": 0.36865234375,
+      "words": [
+        {
+          "start": 1315.56,
+          "end": 1315.6,
+          "word": " Miss",
+          "probability": 0.00024962425231933594
+        },
+        {
+          "start": 1315.6,
+          "end": 1315.6,
+          "word": " Lugia.",
+          "probability": 0.021862347920735676
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "start": 1315.6,
+      "end": 1315.62,
+      "text": " Miss Lugia?",
+      "avg_logprob": -1.366897364096208,
+      "no_speech_prob": 0.36865234375,
+      "words": [
+        {
+          "start": 1315.6,
+          "end": 1315.6,
+          "word": " Miss",
+          "probability": 0.7109375
+        },
+        {
+          "start": 1315.6,
+          "end": 1315.62,
+          "word": " Lugia?",
+          "probability": 0.9970703125
+        }
+      ]
+    }
+  ]
+}
