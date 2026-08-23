@@ -47,7 +47,7 @@ tail -n +2 "$manifest" | while IFS=$'\t' read -r id source_path source_name; do
   fi
 
   echo "Extracting audio track $track_index from: $source_name"
-  ffmpeg -hide_banner -y -i "$source_path" \
+  ffmpeg -hide_banner -nostdin -y -i "$source_path" \
     -map "0:a:$track_index" -vn -c:a pcm_s16le -ar 48000 \
     "$out"
   echo "  wrote $out"

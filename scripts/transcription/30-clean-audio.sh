@@ -67,7 +67,7 @@ tail -n +2 "$manifest" | while IFS=$'\t' read -r id source_path source_name; do
   fi
 
   echo "Cleaning for speech ($profile): $source_name"
-  ffmpeg -hide_banner -y -i "$input" \
+  ffmpeg -hide_banner -nostdin -y -i "$input" \
     -ac 1 -ar 16000 -c:a pcm_s16le -af "$filter" \
     "$output"
   echo "  wrote $output"
