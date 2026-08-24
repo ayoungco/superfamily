@@ -18,7 +18,8 @@ mkdir -p \
   "$repo_root/content/transcripts/probes" \
   "$repo_root/content/transcripts/logs" \
   "$repo_root/content/transcripts/raw" \
-  "$repo_root/content/transcripts/reviewed"
+  "$repo_root/content/transcripts/reviewed" \
+  "$repo_root/content/transcripts/diarization"
 
 if [ ! -x "$venv/bin/python" ]; then
   python3 -m venv "$venv"

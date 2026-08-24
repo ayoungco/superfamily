@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Match diarized speaker clusters against enrolled voiceprints.
+
+Sketch / draft stage. Reads each video's anonymous diarization clusters
+(SPEAKER_00, SPEAKER_01, ... from 45-diarize-local.py), computes one
+embedding per cluster, and compares it against the named voiceprints from
+46-enroll-speakers.py by cosine similarity. A cluster is labeled with the
+best-matching name only if the similarity clears --threshold; otherwise it
+stays anonymous so a human can review it instead of getting a confident
+wrong guess.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import sys
+from pathlib import Path
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Label diarization clusters with enrolled speaker names."
+    )
+    parser.add_argument("-m", "--manifest", default="content/transcripts/manifest.tsv")
+    parser.add_argument("-i", "--audio-dir", default="content/transcripts/audio/cleaned")
+    parser.add_argument("-d", "--diarization-dir", default="content/transcripts/diarization")
+    parser.add_argument("--voiceprints", default="content/transcripts/speakers/voiceprints.json")
+    parser.add_argument("--profile", default="speech")
+    parser.add_argument("--model", default="pyannote/embedding")
+    parser.add_argument(
+        "--hf-token",
+        default=None,
+        help="Defaults to $HF_TOKEN / $HUGGINGFACE_TOKEN.",
+    )
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=0.75,
+        help="Minimum cosine similarity to accept a name match.",
+    )
+    parser.add_argument("--force", action="store_true")
+    return parser.parse_args()
+
+
+def main() -> int:
+    import os
+
+    args = parse_args()
+    hf_token = args.hf_token or os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+    if not hf_token:
+        print(
+            "No Hugging Face token found (--hf-token / $HF_TOKEN). "
+            "pyannote's pretrained models are gated and require one.",
+            file=sys.stderr,
+        )
+        return 2
+
+    try:
+        import numpy as np
+        import torch
+        from pyannote.audio import Inference, Model
+        from pyannote.core import Segment
+    except ImportError:
+        print(
+            "Missing dependency: pyannote.audio / torch / numpy. "
+            "pip install -r scripts/transcription/requirements-diarization.txt",
+            file=sys.stderr,
+        )
+        return 127
+
+    voiceprints_path = Path(args.voiceprints)
+    if not voiceprints_path.exists():
+        print(f"Voiceprints not found: {voiceprints_path}. Run 46-enroll-speakers.py first.", file=sys.stderr)
+        return 2
+    voiceprints = json.loads(voiceprints_path.read_text(encoding="utf-8"))
+    names = list(voiceprints.keys())
+    name_vectors = np.stack([np.asarray(voiceprints[name]["embedding"]) for name in names])
+
+    manifest = Path(args.manifest)
+    if not manifest.exists():
+        print(f"Manifest not found: {manifest}", file=sys.stderr)
+        return 2
+
+    print(f"Loading {args.model} on device={args.device}", flush=True)
+    model = Model.from_pretrained(args.model, use_auth_token=hf_token)
+    inference = Inference(model, window="whole")
+    inference.to(torch.device(args.device))
+
+    audio_dir = Path(args.audio_dir)
+    diarization_dir = Path(args.diarization_dir)
+
+    with manifest.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        for row in reader:
+            video_id = row["id"]
+            source_name = row["source_name"]
+            audio_path = audio_dir / f"{video_id}.{args.profile}.wav"
+            diarization_path = diarization_dir / f"{video_id}.{args.profile}.json"
+            out_path = diarization_dir / f"{video_id}.{args.profile}.labeled.json"
+
+            if not diarization_path.exists():
+                print(f"Skipping missing diarization: {diarization_path}", file=sys.stderr)
+                continue
+            if not audio_path.exists():
+                print(f"Skipping missing cleaned audio: {audio_path}", file=sys.stderr)
+                continue
+            if out_path.exists() and not args.force:
+                print(f"Skipping existing labels: {out_path}")
+                continue
+
+            diarization = json.loads(diarization_path.read_text(encoding="utf-8"))
+            segments = diarization["segments"]
+
+            by_cluster: dict[str, list[dict]] = {}
+            for segment in segments:
+                by_cluster.setdefault(segment["speaker"], []).append(segment)
+
+            print(f"Labeling: {source_name}", flush=True)
+            cluster_matches = {}
+            for cluster, cluster_segments in by_cluster.items():
+                # Longest segment is usually the cleanest single sample of this
+                # cluster; embedding a concatenation is a possible upgrade.
+                longest = max(cluster_segments, key=lambda s: s["end"] - s["start"])
+                embedding = np.asarray(
+                    inference.crop(str(audio_path), Segment(longest["start"], longest["end"]))
+                )
+                embedding = embedding / np.linalg.norm(embedding)
+
+                similarities = name_vectors @ embedding
+                best_index = int(np.argmax(similarities))
+                best_score = float(similarities[best_index])
+
+                if best_score >= args.threshold:
+                    cluster_matches[cluster] = {"name": names[best_index], "score": round(best_score, 3)}
+                else:
+                    cluster_matches[cluster] = {"name": None, "score": round(best_score, 3)}
+
+                label = cluster_matches[cluster]["name"] or "unmatched"
+                print(f"  {cluster} -> {label} ({best_score:.3f})", flush=True)
+
+            for segment in segments:
+                match = cluster_matches[segment["speaker"]]
+                segment["speaker_name"] = match["name"]
+                segment["speaker_match_score"] = match["score"]
+
+            out_path.write_text(
+                json.dumps(
+                    {
+                        "source_audio": diarization["source_audio"],
+                        "threshold": args.threshold,
+                        "cluster_matches": cluster_matches,
+                        "segments": segments,
+                    },
+                    indent=2,
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

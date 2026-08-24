@@ -11,3 +11,9 @@ content/transcripts/probes/
 content/transcripts/audio/
 content/transcripts/logs/
 content/transcripts/scenes/
+content/transcripts/diarization/
+# Voiceprints are biometric-ish data (they characterize someone's actual
+# voice) and the reference manifest may point at local file paths -- keep
+# both out of git even in a private repo.
+content/transcripts/speakers.tsv
+content/transcripts/speakers/
