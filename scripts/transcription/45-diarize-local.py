@@ -84,6 +84,34 @@ def main() -> int:
 
     try:
         import torch
+        import torchaudio
+
+        if not hasattr(torchaudio, "list_audio_backends"):
+            # torchaudio dropped this API; pyannote.audio's io.py still calls it
+            # just to pick a default backend. We only ever load audio via
+            # soundfile (installed as a dependency), so report that.
+            torchaudio.list_audio_backends = lambda: ["soundfile"]
+
+        if not hasattr(torchaudio, "AudioMetaData"):
+            # Also dropped; only referenced at import time by pyannote's
+            # (unused, training-only) dataset-preprocessing code path.
+            torchaudio.AudioMetaData = type(
+                "AudioMetaData", (), {"__init__": lambda self, **kw: self.__dict__.update(kw)}
+            )
+
+        import huggingface_hub
+
+        _hf_hub_download = huggingface_hub.hf_hub_download
+
+        def _hf_hub_download_compat(*a, **kw):
+            # newer huggingface_hub renamed use_auth_token -> token; pyannote.audio
+            # still passes the old name throughout its own internals.
+            if "use_auth_token" in kw:
+                kw.setdefault("token", kw.pop("use_auth_token"))
+            return _hf_hub_download(*a, **kw)
+
+        huggingface_hub.hf_hub_download = _hf_hub_download_compat
+
         from pyannote.audio import Pipeline
     except ImportError:
         print(
