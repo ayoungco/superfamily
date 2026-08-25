@@ -42,6 +42,26 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - Detect visual cuts and export local clips with the
   [[scripts/scenes/README|Scene Detection and Clip Export Workflow]].
 
+## Status
+
+### Tasks
+
+- [x] Separate SF and Powerteam movies into 1-hour episodes
+- [ ] Export 1 hour episodes from Premiere, don't worry about intro/outro, just get the content into bite-sized chunks for easier processing and transcription.
+- [ ] Meaningful titles for each episode
+- [ ] One audio channel drops out in some movies, needs restored
+
+### Ideas
+
+- Battle scenes: mask out the human handlers. Many battle shots are
+  side-on with the humans visibly manipulating the characters, to make a
+  larger character appear to be attacked. Camera is *believed* static
+  (unverified). See
+  [Battle Scene Human Removal](docs/battle-scene-human-removal.md) for
+  the full research: why this splits into three sub-problems of very
+  different difficulty, where reference imagery per character would come
+  from, and the 2D-inpainting vs. 3D-render tradeoff.
+
 
 # Super Family Vault Index
 
@@ -73,11 +93,11 @@ formerly known as the Powerteam.
 - [[docs/whisper-transcription|Local Whisper Transcription]] - workstation setup and model notes.
 - [[docs/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] - detailed archival guidance.
 - [[docs/voice-generative|Voice reconstruction goal]] - possible later use of cleaned speech.
+- [Battle Scene Human Removal](docs/battle-scene-human-removal.md) - research on masking human handlers out of battle shots.
 
 ## Project Notes
 
 - [Repository overview](README.md)
-- [[TODO|Current tasks]]
 - [[Graph]] - notes on using Markdown and Obsidian as a knowledge graph.
 
 
