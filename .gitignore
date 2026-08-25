@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 .DS_Store
 
+# Ultralytics downloads model checkpoints into the current working directory
+# unless told otherwise.
+*.pt
+
 # Generated transcription/scene-detection pipeline output: reproducible from
 # source video and can be large. Reviewed and raw transcript text stays
 # tracked (content/transcripts/raw, content/transcripts/reviewed).
