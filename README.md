@@ -60,7 +60,9 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
   [Battle Scene Human Removal](docs/battle-scene-human-removal.md) for
   the full research: why this splits into three sub-problems of very
   different difficulty, where reference imagery per character would come
-  from, and the 2D-inpainting vs. 3D-render tradeoff.
+  from, and the 2D-inpainting vs. 3D-render tradeoff. Scene detection +
+  person-classification has since been run across the full archive; see
+  [Scene Classification Results](docs/scene-classification-results.md).
 
 
 # Super Family Vault Index

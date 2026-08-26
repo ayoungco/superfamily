@@ -74,7 +74,15 @@ rigid-ish physical objects rather than deforming humans:
 This is per-shot VFX work, not a batch pipeline — every shot needs a
 mask, and sub-problem 2 needs a per-character reference bank. Before
 estimating effort, build a candidate shot list (movie + timestamp) of
-shots that actually have a visible human handler. See
-[Local Scene Detection and Clip Export](../scripts/scenes/README.md) for
-the (already written, not yet run) shot-boundary tool this candidate
-list should build on.
+shots that actually have a visible human handler.
+
+The shot-boundary + person-detection pipeline
+([Local Scene Detection and Clip Export](../scripts/scenes/README.md))
+has now been run across the full archive — see
+[Scene Classification Results](scene-classification-results.md). That
+run's raw output (977 person-flagged clips out of 2,421) is a ceiling,
+not the candidate list itself: it can't distinguish a hand/arm
+intrusion from ordinary on-camera human presence. The actual candidate
+list still needs to be filtered from that output (rank by
+`max_person_area_fraction` ascending and spot-check) before this scope
+estimate can be made.
