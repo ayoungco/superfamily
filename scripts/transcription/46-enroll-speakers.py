@@ -90,8 +90,17 @@ def main() -> int:
         # bypass torchcodec entirely and load via soundfile directly.
         import soundfile as _soundfile
 
-        def _torchaudio_load_compat(filepath, backend=None, **kw):
-            data, sample_rate = _soundfile.read(str(filepath), dtype="float32", always_2d=True)
+        def _torchaudio_load_compat(filepath, frame_offset=0, num_frames=-1, backend=None, **kw):
+            # pyannote's io.py crops windows via frame_offset/num_frames (e.g.
+            # one call per embedding window) -- dropping these silently
+            # returned the *whole* file every time, corrupting every crop.
+            data, sample_rate = _soundfile.read(
+                str(filepath),
+                start=frame_offset,
+                frames=num_frames,
+                dtype="float32",
+                always_2d=True,
+            )
             waveform = torch.from_numpy(data.T.copy())
             return waveform, sample_rate
 

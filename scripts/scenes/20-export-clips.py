@@ -165,7 +165,10 @@ def main() -> int:
             clips = [c for c in clips if c["clip_index"] in wanted_clips[video["id"]]]
 
         for clip in clips:
-            output = clip_dir / f"{label}-scene-{clip['clip_index']}.mp4"
+            # video id always included, even when grouped by a shared date
+            # label -- two movies can land in the same date bucket and reuse
+            # the same clip_index, and the label alone isn't unique.
+            output = clip_dir / f"{label}-{video['id']}-scene-{clip['clip_index']}.mp4"
             if output.exists() and not args.force:
                 print(f"Skipping existing clip: {output}")
                 continue

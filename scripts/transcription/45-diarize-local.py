@@ -38,6 +38,20 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--min-speakers", type=int, default=None)
     parser.add_argument("--max-speakers", type=int, default=None)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument(
+        "--embedding-batch-size",
+        type=int,
+        default=None,
+        help="Override the pipeline's default embedding batch size (config.yaml "
+        "ships 32, which can OOM on smaller GPUs). Lower this if you see a CUDA "
+        "OOM inside the wespeaker embedding model.",
+    )
+    parser.add_argument(
+        "--segmentation-batch-size",
+        type=int,
+        default=None,
+        help="Override the pipeline's default segmentation batch size.",
+    )
     return parser.parse_args()
 
 
@@ -114,8 +128,17 @@ def main() -> int:
         # bypass torchcodec entirely and load via soundfile directly.
         import soundfile as _soundfile
 
-        def _torchaudio_load_compat(filepath, backend=None, **kw):
-            data, sample_rate = _soundfile.read(str(filepath), dtype="float32", always_2d=True)
+        def _torchaudio_load_compat(filepath, frame_offset=0, num_frames=-1, backend=None, **kw):
+            # pyannote's io.py crops windows via frame_offset/num_frames (e.g.
+            # one call per embedding window) -- dropping these silently
+            # returned the *whole* file every time, corrupting every crop.
+            data, sample_rate = _soundfile.read(
+                str(filepath),
+                start=frame_offset,
+                frames=num_frames,
+                dtype="float32",
+                always_2d=True,
+            )
             waveform = torch.from_numpy(data.T.copy())
             return waveform, sample_rate
 
@@ -173,6 +196,15 @@ def main() -> int:
 
     print(f"Loading {args.model} on device={args.device}", flush=True)
     pipeline = Pipeline.from_pretrained(args.model, use_auth_token=args.hf_token)
+    if args.embedding_batch_size is not None:
+        pipeline.embedding_batch_size = args.embedding_batch_size
+    if args.segmentation_batch_size is not None:
+        pipeline.segmentation_batch_size = args.segmentation_batch_size
+    print(
+        f"  embedding_batch_size={pipeline.embedding_batch_size} "
+        f"segmentation_batch_size={pipeline.segmentation_batch_size}",
+        flush=True,
+    )
     pipeline.to(torch.device(args.device))
 
     diarize_kwargs = {}

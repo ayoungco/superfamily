@@ -142,7 +142,8 @@ pip install -r scripts/transcription/requirements-diarization.txt
 ```
 
 pyannote's pretrained pipeline is gated on Hugging Face: accept the model
-terms at huggingface.co/pyannote/speaker-diarization-3.1, create an access
+terms at huggingface.co/pyannote/speaker-diarization-3.1 (and its internal
+dependency huggingface.co/pyannote/segmentation-3.0), create an access
 token, then run:
 
 ```bash
@@ -152,6 +153,24 @@ python scripts/transcription/45-diarize-local.py \
   --profile speech \
   --device cuda
 ```
+
+On `--device cuda`, torch's bundled `libnvrtc.so.13` `dlopen()`s
+`libnvrtc-builtins.so.13.0` by bare filename (no RPATH of its own), needed
+for CUDA JIT kernels during speaker-embedding extraction. If it's not on the
+loader's default search path this fails with `nvrtc: error: failed to open
+libnvrtc-builtins.so.13.0`, even though the file ships inside the
+`nvidia-cuda-nvrtc` pip package (under `nvidia/cu13/lib/` in the venv).
+`.venv-transcription/bin/activate` adds that directory to `LD_LIBRARY_PATH`
+-- re-add it manually if the venv gets recreated:
+
+```bash
+export LD_LIBRARY_PATH="$VIRTUAL_ENV/lib/python3.14/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH"
+```
+
+The pipeline's shipped config defaults to `embedding_batch_size=32`, which
+can CUDA-OOM on smaller GPUs (a single batch's conv2d forward can want
+10+ GiB). Lower it with `--embedding-batch-size` / `--segmentation-batch-size`
+if you see an OOM inside the wespeaker embedding model.
 
 Outputs go to `content/transcripts/diarization/{id}.{profile}.json` (segment
 list) and `.rttm` (standard diarization interchange format). Next step, not
