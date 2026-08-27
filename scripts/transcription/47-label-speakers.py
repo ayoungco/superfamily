@@ -62,11 +62,51 @@ def main() -> int:
         import torch
         import torchaudio
 
+        # torch 2.6+ defaults torch.load(weights_only=True), which rejects
+        # several pyannote-internal classes pickled into its checkpoints
+        # (TorchVersion, Specifications, ...). Allowlisting them one at a time
+        # is whack-a-mole, so default weights_only=False here instead -- these
+        # checkpoints come from the official pyannote org on Hugging Face via
+        # a gated download the user explicitly accepted terms for.
+        _torch_load = torch.load
+
+        def _torch_load_compat(*a, **kw):
+            # force, not setdefault: lightning_fabric passes weights_only
+            # explicitly (as True), so setdefault would never override it.
+            kw["weights_only"] = False
+            return _torch_load(*a, **kw)
+
+        torch.load = _torch_load_compat
+
         if not hasattr(torchaudio, "list_audio_backends"):
             # torchaudio dropped this API; pyannote.audio's io.py still calls it
             # just to pick a default backend. We only ever load audio via
             # soundfile (installed as a dependency), so report that.
             torchaudio.list_audio_backends = lambda: ["soundfile"]
+
+        # Newer torchaudio routes torchaudio.load() through torchcodec, which
+        # needs a working native CUDA (nvrtc) install this host doesn't have.
+        # pyannote.audio's io.py only needs (waveform, sample_rate) back, so
+        # bypass torchcodec entirely and load via soundfile directly.
+        import soundfile as _soundfile
+
+        def _torchaudio_load_compat(filepath, backend=None, **kw):
+            data, sample_rate = _soundfile.read(str(filepath), dtype="float32", always_2d=True)
+            waveform = torch.from_numpy(data.T.copy())
+            return waveform, sample_rate
+
+        torchaudio.load = _torchaudio_load_compat
+
+        if not hasattr(torchaudio, "info"):
+            # Same removal as torchaudio.load above; pyannote's io.py only
+            # reads .num_frames and .sample_rate off the result.
+            def _torchaudio_info_compat(filepath, backend=None, **kw):
+                sf_info = _soundfile.info(str(filepath))
+                return torchaudio.AudioMetaData(
+                    num_frames=sf_info.frames, sample_rate=sf_info.samplerate
+                )
+
+            torchaudio.info = _torchaudio_info_compat
 
         if not hasattr(torchaudio, "AudioMetaData"):
             # Also dropped; only referenced at import time by pyannote's
