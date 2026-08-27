@@ -47,7 +47,7 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 ### Tasks
 
 - [x] Separate SF and Powerteam movies into 1-hour episodes
-- [ ] Export 1 hour episodes from Premiere, don't worry about intro/outro, just get the content into bite-sized chunks for easier processing and transcription.
+- [ ] Export 1 hour episodes from Premiere, don't worry about intro/outro, just get the content into bite-sized chunks for easier processing and transcription. See [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) for a plan to do this with 10-20 minute episodes using the scene-detection data instead of manual Premiere cuts.
 - [ ] Meaningful titles for each episode
 - [ ] One audio channel drops out in some movies, needs restored
 
@@ -96,6 +96,7 @@ formerly known as the Powerteam.
 - [[docs/audio-extraction-and-transcription|Extracting Audio Tracks and Transcribing Muddy VHS Video]] - detailed archival guidance.
 - [[docs/voice-generative|Voice reconstruction goal]] - possible later use of cleaned speech.
 - [Battle Scene Human Removal](docs/battle-scene-human-removal.md) - research on masking human handlers out of battle shots.
+- [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) - plan for cutting movies into 10-20 minute episodes using scene-detection data.
 
 ## Project Notes
 
