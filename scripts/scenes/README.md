@@ -153,6 +153,50 @@ from its per-video folder into `episodes/season-{NN}/S{NN}E{NN}.mp4`:
 python3 scripts/scenes/80-organize-seasons.py
 ```
 
+## 5. Episode Metadata and VHS Title Cards
+
+`90-extract-episode-transcripts.py` slices each movie's Whisper transcript
+(`content/transcripts/raw/{video_id}.json`) by the planned episode
+boundaries in `season-plan.tsv`, writing one plain-text file per episode to
+`content/transcripts/scenes/episode-transcripts/{code}.txt`:
+
+```bash
+python3 scripts/scenes/90-extract-episode-transcripts.py
+```
+
+Writing the actual title and synopsis per episode is a generation step, not
+a deterministic one -- there's no script for it. Have an LLM (Claude Code
+itself, or an agent) read each `episode-transcripts/{code}.txt` and write a
+`{"code": ..., "title": ..., "synopsis": ...}` object per episode into
+`content/data/episode-metadata/season-{NN}.json` (one JSON array per
+season). For a full-archive run this is naturally parallelizable -- split
+the episode list into chunks and run one agent per chunk, since each
+episode's transcript is independent of the others.
+
+`92-merge-episode-metadata.py` then folds in everything else already known
+about each episode (timing, source movie, approx date from
+`content/transcripts/scenes/dates.tsv`) so the season JSON files are
+self-contained records, not just title/synopsis:
+
+```bash
+python3 scripts/scenes/92-merge-episode-metadata.py
+```
+
+`91-generate-title-cards.py` renders a short (4.5s) faux-VHS title card per
+episode -- static/grain, scanlines, chromatic-shifted text, a corner
+REC/date OSD (using the approx date when known), and a running timecode --
+matched to that episode's own resolution and frame rate. It reads the
+episode title from `content/data/episode-metadata/` when present (falling
+back to the movie's short name otherwise), so it's worth running after the
+metadata step. Cards are written alongside each episode as
+`episodes/season-{NN}/{code}.intro.mp4` and do **not** modify the exported
+episode files -- prepend one in an editor, or use it as a media-server
+"trailer" clip, whichever fits your player.
+
+```bash
+python3 scripts/scenes/91-generate-title-cards.py
+```
+
 ## Storage Notes
 
 - Keep the source movies as the archival originals.
