@@ -47,7 +47,7 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 ### Tasks
 
 - [x] Separate SF and Powerteam movies into 1-hour episodes
-- [ ] Export 1 hour episodes from Premiere, don't worry about intro/outro, just get the content into bite-sized chunks for easier processing and transcription. See [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) for a plan to do this with 10-20 minute episodes using the scene-detection data instead of manual Premiere cuts.
+- [x] Export 10-20 minute episodes programmatically from scene-detection data, grouped into seasons, instead of manual Premiere cuts. See [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) and `scripts/scenes/50-plan-episodes.py` through `80-organize-seasons.py`.
 - [ ] Meaningful titles for each episode
 - [ ] One audio channel drops out in some movies, needs restored
 

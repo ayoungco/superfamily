@@ -103,6 +103,56 @@ toward a full-body live-action shot; a small one leans toward a partial
 hand/arm intrusion, but this is an unverified heuristic -- spot-check before
 trusting it.
 
+## 4. Plan and Export Episodes
+
+`50-plan-episodes.py` turns each movie's real detected cuts into 10-20
+minute episode boundaries: it picks evenly-spaced ideal boundaries, then
+snaps each one to the nearest real cut within `--tolerance-minutes` (default
+3). A boundary with no real cut nearby is forced at the ideal timestamp and
+flagged `end_snapped=False` for review. See
+[Programmatic Episode Splitting](../../docs/programmatic-episode-splitting.md)
+for the full rationale, including why the planning CSV's ~55-60 minute
+"episode" estimates don't match measured runtimes and aren't used here.
+
+```bash
+python3 scripts/scenes/50-plan-episodes.py \
+  --target-minutes 15 --tolerance-minutes 3
+```
+
+Writes `content/transcripts/scenes/episode-plan.tsv`.
+
+`60-export-episodes.py` cuts each planned episode from its source movie to
+`/mnt/creative/projects/superfamily/episodes/{video_id}/`, using stream copy
+by default (fast, no re-encode, but starts on the nearest keyframe -- see
+"Splitting Without Re-encoding" in
+[Media Ingest and Episode Chunking](../../docs/media-ingest-and-chunking.md)).
+A single clip's export failure is logged and skipped rather than aborting
+the whole batch.
+
+```bash
+python3 scripts/scenes/60-export-episodes.py
+```
+
+`70-assign-seasons.py` groups the planned episodes into seasons -- Season
+1-3 follow `content/data/super_family_episodes_v2.csv`'s existing SF1-4 /
+SF5-9 / SF10-14 grouping, with a new Season 0 prequel for the Powerteam
+tapes (ordered by tape number; they predate the Super Family movies). It
+assigns a continuous, season-scoped episode number, so e.g. SF6 Part 2's
+episodes pick up numbering right after SF6 Part 1's instead of restarting.
+
+```bash
+python3 scripts/scenes/70-assign-seasons.py
+```
+
+Writes `content/transcripts/scenes/season-plan.tsv`.
+
+`80-organize-seasons.py` then moves (not copies) each exported episode file
+from its per-video folder into `episodes/season-{NN}/S{NN}E{NN}.mp4`:
+
+```bash
+python3 scripts/scenes/80-organize-seasons.py
+```
+
 ## Storage Notes
 
 - Keep the source movies as the archival originals.

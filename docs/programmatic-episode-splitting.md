@@ -11,6 +11,12 @@ tags:
 Related: [[docs/media-ingest-and-chunking|Media Ingest and Episode Chunking]] |
 [[scripts/scenes/README|Local Scene Detection and Clip Export]]
 
+**Status: implemented.** `50-plan-episodes.py` through `80-organize-seasons.py`
+in `scripts/scenes/` build and run the pipeline sketched below -- see
+[[scripts/scenes/README|Local Scene Detection and Clip Export]] for usage.
+The open questions section at the end records the calls made where the plan
+below left them open.
+
 The README task list calls for turning the monolithic SF/Powerteam movie
 files into bite-sized episodes ("Export 1 hour episodes from Premiere,
 don't worry about intro/outro, just get the content into bite-sized chunks
@@ -103,43 +109,48 @@ to listen across before treating the split as final -- exactly the caution
 already written into that doc ("Listen around every boundary before
 deleting any working derivative").
 
-## Suggested shape (not yet built)
+## Implemented shape
 
 Following the existing `scripts/scenes/` numbering and TSV-in/TSV-out
 convention (`10-detect-scenes.py` -> `20-export-clips.py` ->
 `30-classify-scenes.py` -> `40-select-candidates.py`):
 
-- A new `50-plan-episodes.py` reads `detections/*.tsv` plus
-  `--target-minutes`/`--tolerance-minutes`, and writes one boundary TSV per
-  video (or a single combined manifest) with columns like `video_id`,
-  `episode_index`, `start_seconds`, `end_seconds`, `snapped` (whether the
-  boundary hit a real cut or was forced). This is the natural analog of
-  `40-select-candidates.py`'s "read classification output, write a ranked
-  TSV" shape.
-- `20-export-clips.py` already accepts `--candidates`; the same
-  video_id/clip_index filtering shape doesn't quite fit here since episode
-  boundaries aren't existing clip indices, so this likely wants a small
-  dedicated export step (or a `--boundaries` mode) that stream-copies each
-  planned episode straight from the source, writing to
-  `/mnt/creative/projects/superfamily/episodes/{short_name}/` per the
-  layout already sketched in the ingest doc.
-- Output naming can reuse the CSV's `SFxx` short names and sequential
-  episode numbering, but the actual season/episode/title assignment should
-  get regenerated from real measured durations rather than hand-typed
-  minute estimates -- effectively a `super_family_episodes_v3` grounded in
-  the scene-detection data instead of the original plan.
+- `50-plan-episodes.py` reads `detections/*.tsv` plus
+  `--target-minutes`/`--tolerance-minutes`, and writes
+  `content/transcripts/scenes/episode-plan.tsv` with `video_id`,
+  `episode_index`, `start_seconds`, `end_seconds`, `duration_seconds`,
+  `end_snapped` (whether the boundary hit a real cut or was forced). Running
+  it at the default 15/3 split across the full archive produced 196
+  episodes across 25 videos, with 44 (~22%) forced boundaries.
+- `60-export-episodes.py` stream-copies each planned episode straight from
+  its source to
+  `/mnt/creative/projects/superfamily/episodes/{video_id}/{video_id}-episode-{NN}.mp4`.
+  Always writes `.mp4` regardless of source container -- some sources are
+  `.m4v`, which makes ffmpeg pick the strict "ipod" muxer and reject
+  copy-mode streams whose codec parameters don't fit its profile checks. A
+  single clip's export failure is logged and skipped rather than aborting
+  the whole batch.
+- `70-assign-seasons.py` and `80-organize-seasons.py` handle the
+  season/episode numbering and final layout -- see the "Open questions"
+  answers below for what they implement.
 
-## Open questions
+## Open questions (resolved)
 
-- Should the ~55-60 min plan in `super_family_episodes_v2.csv` stay as the
-  canonical hour-scale plan (e.g. for a future edited "movie" cut), with
-  10-20 min episodes as a separate bite-sized derivative -- or does the
-  short-form version replace it as the primary target?
-- Renumber episodes continuously across a whole movie's parts (so SF9's
-  three manifest fragments become one shared episode run), or keep
-  numbering scoped per source file?
-- 10-20 min is wide enough to swallow most of the detected scene lengths
-  in the table above except the longest few -- worth deciding whether
-  forced (non-cut-aligned) boundaries are rare enough to just flag for
-  manual review, or common enough to need a smarter fallback (e.g.
-  widening tolerance before forcing a cut).
+- **Should the ~55-60 min plan stay canonical?** No -- the short-form
+  10-20 minute split is now the primary target. `super_family_episodes_v2.csv`'s
+  Season column (SF1-4 / SF5-9 / SF10-14) is still reused as the story
+  grouping, since nothing about it depended on the stale per-episode minute
+  estimates.
+- **Renumber continuously across a movie's parts, or per source file?**
+  Continuously -- `70-assign-seasons.py` assigns one running
+  `season_episode_number` per season, so e.g. SF6 Part 2's episodes pick up
+  numbering right after SF6 Part 1's instead of restarting at 1.
+  Powerteam's tapes (which predate the Super Family movies and have no
+  Season in the CSV) get a new Season 0, ordered by tape number since only
+  Tape 4 and the Green Tapes have confirmed approximate dates (see
+  `content/transcripts/scenes/dates.tsv`).
+- **How common are forced boundaries?** 44 of 196 (~22%) on the full
+  archive at the 15/3 default -- common enough that `60-export-episodes.py`
+  logs a `(forced boundary)` note per clip rather than a one-off flag, so
+  it's visible in the export log which files to listen across before
+  treating the split as final.
