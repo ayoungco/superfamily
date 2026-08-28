@@ -173,10 +173,32 @@ can CUDA-OOM on smaller GPUs (a single batch's conv2d forward can want
 if you see an OOM inside the wespeaker embedding model.
 
 Outputs go to `content/transcripts/diarization/{id}.{profile}.json` (segment
-list) and `.rttm` (standard diarization interchange format). Next step, not
-yet built: a merge script that assigns each Whisper segment the diarization
-label with the most time overlap, plus a small per-video labels file so a
-human can map `SPEAKER_00` to an actual name once.
+list) and `.rttm` (standard diarization interchange format). (An earlier
+version of `write_outputs()` built these paths with `Path.with_suffix()`,
+which *replaces* a path's last suffix rather than appending one -- since
+`out_base` is already `{id}.{profile}`, that silently dropped the profile
+and wrote bare `{id}.json`/`.rttm`. Fixed; if you have diarization output
+from before this fix, rename it to include the profile, e.g. `mv {id}.json {id}.speech.json`.)
+
+## 8.5 Merge Diarization into the Transcript
+
+`48-merge-transcript-speakers.py` assigns each Whisper transcript segment
+the diarization speaker with the most overlapping time, and writes
+`content/transcripts/speaker-labeled/{id}.json` (segments with a `speaker`
+field added) and a plain-text `{id}.txt` (`SPEAKER_NN: text` per line) for
+quick review:
+
+```bash
+python3 scripts/transcription/48-merge-transcript-speakers.py
+```
+
+Across all 25 videos this landed under 2% `UNKNOWN` (a transcript segment
+with no diarization overlap at all). If
+`content/transcripts/diarization/{id}.{profile}.labeled.json` exists (the
+output of step 8 below), real names are substituted in place of the
+generic cluster ids wherever a match cleared `--threshold`; until you've
+run that enrollment step, every speaker in the merged transcript will be a
+generic `SPEAKER_NN`, not a real name.
 
 ## 8. Enroll and Label Named Speakers (draft / experimental)
 

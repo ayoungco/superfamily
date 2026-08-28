@@ -56,8 +56,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def write_outputs(out_base: Path, annotation, source_audio: Path) -> set[str]:
-    json_path = out_base.with_suffix(".json")
-    rttm_path = out_base.with_suffix(".rttm")
+    # out_base is "{video_id}.{profile}" -- with_suffix() would *replace*
+    # ".{profile}" instead of appending, silently dropping it from the
+    # filename (this previously wrote "{video_id}.json" for every profile).
+    json_path = out_base.parent / f"{out_base.name}.json"
+    rttm_path = out_base.parent / f"{out_base.name}.rttm"
 
     segments = [
         {"start": round(turn.start, 3), "end": round(turn.end, 3), "speaker": speaker}
@@ -227,8 +230,9 @@ def main() -> int:
                 print(f"Skipping missing cleaned audio: {audio_path}", file=sys.stderr)
                 continue
 
-            if out_base.with_suffix(".json").exists() and not args.force:
-                print(f"Skipping existing diarization: {out_base.with_suffix('.json')}")
+            out_json = out_base.parent / f"{out_base.name}.json"
+            if out_json.exists() and not args.force:
+                print(f"Skipping existing diarization: {out_json}")
                 continue
 
             print(f"Diarizing locally: {source_name}", flush=True)
