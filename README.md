@@ -97,6 +97,7 @@ formerly known as the Powerteam.
 - [[docs/voice-generative|Voice reconstruction goal]] - possible later use of cleaned speech.
 - [Battle Scene Human Removal](docs/battle-scene-human-removal.md) - research on masking human handlers out of battle shots.
 - [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) - plan for cutting movies into 10-20 minute episodes using scene-detection data.
+- [Episode Metadata and VHS Title Cards](docs/episode-metadata-and-title-cards.md) - transcript-grounded per-episode titles/synopses, and a generated faux-VHS intro clip per episode.
 
 ## Project Notes
 
