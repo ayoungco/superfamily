@@ -51,6 +51,27 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def probe_video_codec(source: Path) -> str:
+    result = subprocess.run(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-select_streams",
+            "v:0",
+            "-show_entries",
+            "stream=codec_name",
+            "-of",
+            "csv=p=0",
+            str(source),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip()
+
+
 def export_command(
     source: Path,
     output: Path,
@@ -59,6 +80,7 @@ def export_command(
     mode: str,
     crf: int,
     preset: str,
+    source_codec: str,
 ) -> list[str]:
     command = [
         "ffmpeg",
@@ -80,6 +102,11 @@ def export_command(
     ]
     if mode == "copy":
         command.extend(["-c", "copy", "-avoid_negative_ts", "make_zero"])
+        # ffmpeg stream-copies HEVC into MP4 tagged "hev1" by default, which
+        # macOS QuickTime/AVFoundation refuses to open even though it's a
+        # valid tag -- it only recognizes "hvc1" for HEVC-in-MP4.
+        if source_codec == "hevc":
+            command.extend(["-tag:v", "hvc1"])
     else:
         command.extend(
             [
@@ -150,6 +177,7 @@ def main() -> int:
         # always write .mp4: some sources are .m4v, which makes ffmpeg pick
         # the strict "ipod" muxer and reject copy-mode streams whose codec
         # parameters don't fit its profile checks.
+        source_codec = probe_video_codec(source)
 
         for episode in episodes:
             output = video_dir / f"{video_id}-episode-{episode['episode_index']}.mp4"
@@ -172,6 +200,7 @@ def main() -> int:
                         args.mode,
                         args.crf,
                         args.preset,
+                        source_codec,
                     ),
                     check=True,
                     capture_output=True,

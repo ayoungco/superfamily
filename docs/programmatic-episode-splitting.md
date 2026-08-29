@@ -137,10 +137,14 @@ convention (`10-detect-scenes.py` -> `20-export-clips.py` ->
 ## Open questions (resolved)
 
 - **Should the ~55-60 min plan stay canonical?** No -- the short-form
-  10-20 minute split is now the primary target. `super_family_episodes_v2.csv`'s
-  Season column (SF1-4 / SF5-9 / SF10-14) is still reused as the story
-  grouping, since nothing about it depended on the stale per-episode minute
-  estimates.
+  10-20 minute split is now the primary target.
+  `super_family_episodes_v2.csv`'s original Season column (SF1-4 / SF5-9 /
+  SF10-14) turned out to group by story arc, not episode count -- once cut
+  into real episodes that produced two ~70-episode "seasons." Replaced with
+  a 6-season split (`SEASON_BREAKS` in `70-assign-seasons.py`) grouping 2-3
+  movies per season for a more even ~25-40 episodes each; see
+  [[docs/episode-metadata-and-title-cards|Episode Metadata and VHS Title Cards]]
+  for the current per-season counts.
 - **Renumber continuously across a movie's parts, or per source file?**
   Continuously -- `70-assign-seasons.py` assigns one running
   `season_episode_number` per season, so e.g. SF6 Part 2's episodes pick up

@@ -127,18 +127,23 @@ by default (fast, no re-encode, but starts on the nearest keyframe -- see
 "Splitting Without Re-encoding" in
 [Media Ingest and Episode Chunking](../../docs/media-ingest-and-chunking.md)).
 A single clip's export failure is logged and skipped rather than aborting
-the whole batch.
+the whole batch. For an HEVC source it also passes `-tag:v hvc1` -- ffmpeg
+stream-copies HEVC into MP4 tagged `hev1` by default, which is a valid tag
+but one that macOS QuickTime/AVFoundation refuses to open; VLC and other
+players don't care either way, so this is easy to miss until someone tries
+to open a clip on a Mac.
 
 ```bash
 python3 scripts/scenes/60-export-episodes.py
 ```
 
 `70-assign-seasons.py` groups the planned episodes into seasons -- Season
-1-3 follow `content/data/super_family_episodes_v2.csv`'s existing SF1-4 /
-SF5-9 / SF10-14 grouping, with a new Season 0 prequel for the Powerteam
-tapes (ordered by tape number; they predate the Super Family movies). It
-assigns a continuous, season-scoped episode number, so e.g. SF6 Part 2's
-episodes pick up numbering right after SF6 Part 1's instead of restarting.
+1-6 split SF1-14 into 2-3 movies per season (`SEASON_BREAKS` in the script),
+aiming for a roughly even ~25-40 episode season, plus a Season 0 prequel for
+the Powerteam tapes (ordered by tape number; they predate the Super Family
+movies). It assigns a continuous, season-scoped episode number, so e.g. SF6
+Part 2's episodes pick up numbering right after SF6 Part 1's instead of
+restarting.
 
 ```bash
 python3 scripts/scenes/70-assign-seasons.py
@@ -152,6 +157,26 @@ from its per-video folder into `episodes/season-{NN}/S{NN}E{NN}.mp4`:
 ```bash
 python3 scripts/scenes/80-organize-seasons.py
 ```
+
+If you change `SEASON_BREAKS` and re-run `70-assign-seasons.py` after
+episodes are already exported and organized, most codes shift even though
+the underlying episode content doesn't. Keep a copy of the old
+`season-plan.tsv` (e.g. `cp season-plan.tsv season-plan.OLD.tsv`) before
+re-running 70, then move the already-exported files to their new paths
+with `75-renumber-seasons.py`:
+
+```bash
+python3 scripts/scenes/75-renumber-seasons.py --old-plan content/transcripts/scenes/season-plan.OLD.tsv
+```
+
+This moves each episode file (through a staging directory, so old and new
+season numbers can safely collide) and deletes stale title cards -- the
+season/episode number is burned into their pixels, so regenerate them with
+`91-generate-title-cards.py` afterward. `92-merge-episode-metadata.py`
+matches existing title/synopsis text back to plan rows by
+`(video_id, episode_index)` rather than by code, so previously generated
+text survives the renumbering without needing to be regenerated -- just
+re-run it to pick up the new codes.
 
 ## 5. Episode Metadata and VHS Title Cards
 
@@ -196,6 +221,23 @@ episode files -- prepend one in an editor, or use it as a media-server
 ```bash
 python3 scripts/scenes/91-generate-title-cards.py
 ```
+
+Once titles exist, `93-add-titles-to-filenames.py` renames each
+`{code}.mp4` (and its `{code}.intro.mp4`, if present) to
+`{code} - {title}.mp4` -- the "SxxEyy - Title" form Plex/Jellyfin/Kodi
+already parse for episode matching, so this also gets media servers to
+show real titles instead of bare codes. It's a rename, not a re-encode,
+and safe to re-run (matches files by their `SxxEyy` prefix regardless of
+whether a title suffix is already present):
+
+```bash
+python3 scripts/scenes/93-add-titles-to-filenames.py
+```
+
+Run this one last. `70`/`75`'s renumbering and `91`'s title cards both
+look for the bare `{code}.mp4` name, so if you need to renumber seasons
+again after titles have been added, reverse this first with
+`93-add-titles-to-filenames.py --strip-titles` before re-running `75`.
 
 ## Storage Notes
 

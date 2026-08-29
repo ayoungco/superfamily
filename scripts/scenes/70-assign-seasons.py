@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Group planned episodes (from 50-plan-episodes.py) into seasons.
 
-Season 1-3 follow content/data/super_family_episodes_v2.csv's existing
-grouping (SF1-4, SF5-9, SF10-14) -- that CSV has no real timecodes, but its
-Season column is still the intended story grouping, so it's reused here
-rather than re-derived. Season 0 is a new prequel season for the Powerteam
-tapes, which predate the Super Family movies by the user's account ("years
-before"); Powerteam Tape 1/2/3 have no confirmed date (see
+Season 1-6 group SF1-14 into 2-3 movies per season (see SEASON_BREAKS
+below), aiming for a roughly even ~25-40 episode season instead of
+mirroring content/data/super_family_episodes_v2.csv's original 3-way
+SF1-4/SF5-9/SF10-14 split -- that grouping was based on story arc, not
+episode count, and produced two ~70-episode "seasons" once the movies were
+actually cut into 10-20 minute episodes. Season 0 is a prequel season for
+the Powerteam tapes, which predate the Super Family movies by the user's
+account ("years before"); Powerteam Tape 1/2/3 have no confirmed date (see
 content/transcripts/scenes/dates.tsv), but tape numbering gives a reliable
 recording order on its own.
 
@@ -22,9 +24,10 @@ import csv
 import re
 from pathlib import Path
 
-# (movie_order, short_name) for each SF number -- season is derived from
-# movie_order via SEASON_BREAKS below, matching super_family_episodes_v2.csv.
-SEASON_BREAKS = [(4, 1), (9, 2), (14, 3)]  # (max sf_number, season)
+# season is derived from sf_number via these (max sf_number, season)
+# cumulative breaks: SF1-3->1, SF4-6->2, SF7-8->3, SF9-10->4, SF11-12->5,
+# SF13-14->6.
+SEASON_BREAKS = [(3, 1), (6, 2), (8, 3), (10, 4), (12, 5), (14, 6)]
 
 POWERTEAM_TAPE = re.compile(r"^The Powerteam - Tape (\d+)", re.IGNORECASE)
 POWERTEAM_GREEN = re.compile(r"^The Powerteam - The Green Tapes Part (\d+)", re.IGNORECASE)

@@ -9,6 +9,12 @@ objects -- this script folds in the rest of what's already known about each
 episode (timing, source movie, approx date) so the final file doesn't
 require cross-referencing season-plan.tsv separately. Overwrites the input
 season-*.json files in place with the enriched records.
+
+Existing title/synopsis text is matched back to plan rows by
+(video_id, episode_index), not by "code" -- code depends on the season
+grouping, which can change (see 70-assign-seasons.py's SEASON_BREAKS) even
+though the underlying episode content doesn't. This lets previously
+generated text survive a season renumbering without regenerating it.
 """
 from __future__ import annotations
 
@@ -54,17 +60,21 @@ def main() -> int:
                 if row.get("approx_date"):
                     approx_dates[row["video_id"]] = row["approx_date"]
 
-    written_texts: dict[str, dict] = {}
+    written_texts: dict[tuple[str, str], dict] = {}
     for path in sorted(args.metadata_dir.glob("season-*.json")):
         for entry in json.loads(path.read_text(encoding="utf-8")):
-            written_texts[entry["code"]] = entry
+            # older files may predate video_id/episode_index enrichment and
+            # only have {code, title, synopsis} -- skip those, they'll show
+            # up as missing_text below rather than mismatching silently.
+            if "video_id" in entry and "episode_index" in entry:
+                written_texts[(entry["video_id"], entry["episode_index"])] = entry
 
     by_season: dict[int, list[dict]] = {}
     missing_text = 0
     for row in plan_rows:
         season = int(row["season"])
         code = f"S{season:02d}E{row['season_episode_number']}"
-        text = written_texts.get(code)
+        text = written_texts.get((row["video_id"], row["episode_index"]))
         if text is None:
             missing_text += 1
             title, synopsis = "", ""

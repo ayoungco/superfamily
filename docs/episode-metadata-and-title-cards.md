@@ -30,8 +30,27 @@ one stretch of unrelated bled-through audio in SF9); those got an honest
 
 `scripts/scenes/92-merge-episode-metadata.py` folds in everything else
 already known about each episode -- timing, source movie, approx date from
-`dates.tsv` -- so `content/data/episode-metadata/season-{00..03}.json` are
-self-contained records:
+`dates.tsv` -- so `content/data/episode-metadata/season-{00..06}.json` are
+self-contained records. Season grouping (`SEASON_BREAKS` in
+`70-assign-seasons.py`) later moved from the original 3-way SF1-4/SF5-9/
+SF10-14 split to a 6-season split for more even season sizes:
+
+| Season | Content | Episodes |
+|---|---|---|
+| 0 | Powerteam (prequel) | 16 |
+| 1 | SF1-SF3 | 31 |
+| 2 | SF4-SF6 | 32 |
+| 3 | SF7-SF8 | 26 |
+| 4 | SF9-SF10 | 26 |
+| 5 | SF11-SF12 | 27 |
+| 6 | SF13-SF14 | 38 |
+
+A renumbering like this moves most episode codes even though the
+underlying content doesn't change -- `75-renumber-seasons.py` moves the
+already-exported files to their new season paths, and
+`92-merge-episode-metadata.py` matches existing title/synopsis text back
+by `(video_id, episode_index)` rather than by code, so previously
+generated text survives the move.
 
 ```json
 {
@@ -83,3 +102,10 @@ had already come out clean, for a meaningfully longer batch run, to buy
 only the convenience of not having a separate file. Prepend it in an
 editor, or point a media server's trailer/intro slot at it, whichever
 fits.
+
+`scripts/scenes/93-add-titles-to-filenames.py` runs after both, renaming
+each `{code}.mp4`/`{code}.intro.mp4` pair to `{code} - {title}.mp4` --
+`S01E01.mp4` becomes `S01E01 - The Great Morning Football Draft.mp4`. That
+"SxxEyy - Title" form is a naming convention Plex/Jellyfin/Kodi already
+parse for episode matching, so it doubles as a media-server fix, not just
+a Finder/Explorer convenience.
