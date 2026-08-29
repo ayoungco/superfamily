@@ -121,6 +121,20 @@ python3 scripts/scenes/50-plan-episodes.py \
 
 Writes `content/transcripts/scenes/episode-plan.tsv`.
 
+The script also supports `--mode takes`, a proposed alternative that never
+forces a boundary -- a single take at least `--target-minutes` long stands
+alone as its own (possibly much longer) segment instead of being force-cut,
+and shorter clips get packed to the target length. See
+[Take-Based Episode Splitting](../../docs/take-based-episode-splitting.md)
+for the rationale and results; this mode is not yet adopted downstream.
+
+```bash
+python3 scripts/scenes/50-plan-episodes.py --mode takes
+```
+
+Writes `content/transcripts/scenes/episode-plan-takes.tsv`, leaving the
+`--mode fixed` output untouched.
+
 `60-export-episodes.py` cuts each planned episode from its source movie to
 `/mnt/creative/projects/superfamily/episodes/{video_id}/`, using stream copy
 by default (fast, no re-encode, but starts on the nearest keyframe -- see

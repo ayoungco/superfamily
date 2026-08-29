@@ -157,4 +157,7 @@ convention (`10-detect-scenes.py` -> `20-export-clips.py` ->
   archive at the 15/3 default -- common enough that `60-export-episodes.py`
   logs a `(forced boundary)` note per clip rather than a one-off flag, so
   it's visible in the export log which files to listen across before
-  treating the split as final.
+  treating the split as final. See
+  [[docs/take-based-episode-splitting|Take-Based Episode Splitting]] for a
+  proposed alternative that eliminates forced boundaries entirely by never
+  splitting a single long take.
