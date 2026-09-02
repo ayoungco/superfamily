@@ -84,6 +84,13 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path("content/transcripts/scenes/season-plan.tsv"),
     )
+    parser.add_argument(
+        "--flat-season",
+        help="Instead of classifying each video into its SF-movie season, "
+        "assign every row this single season label with one continuous "
+        "episode counter -- for a bonus/extras plan that should stay out "
+        "of the mainline numbered seasons (see 56-apply-review-decisions.py).",
+    )
     return parser.parse_args()
 
 
@@ -111,13 +118,15 @@ def main() -> int:
             print(f"Skipping unknown video id in plan: {video_id}")
             continue
         season, short_name, sort_key, part = classify(video["source_name"])
+        if args.flat_season is not None:
+            season = args.flat_season
         episodes.sort(key=lambda e: int(e["episode_index"]))
         classified.append((season, sort_key, video_id, short_name, part, episodes))
 
     classified.sort(key=lambda c: (c[0], c[1]))
 
     rows = []
-    season_counters: dict[int, int] = {}
+    season_counters: dict[int | str, int] = {}
     for season, _sort_key, video_id, short_name, part, episodes in classified:
         for episode in episodes:
             season_counters[season] = season_counters.get(season, 0) + 1

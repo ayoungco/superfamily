@@ -135,6 +135,60 @@ python3 scripts/scenes/50-plan-episodes.py --mode takes
 Writes `content/transcripts/scenes/episode-plan-takes.tsv`, leaving the
 `--mode fixed` output untouched.
 
+### Trimming Blank Segments and Routing Off-Content to Extras
+
+Take-based segments still include stretches that aren't Super Family
+content -- bleed-through TV/broadcast audio, interstitials, dead/blank
+tape -- since scene detection only finds cuts, not content (see "What this
+does for the 'blank / other recording' content" in
+[Take-Based Episode Splitting](../../docs/take-based-episode-splitting.md)).
+Rather than hand-trimming these in an editor, review and route them here so
+the cut happens before the expensive re-encode step:
+
+```bash
+python3 scripts/scenes/55-flag-segments-for-review.py
+```
+
+Writes `content/transcripts/scenes/segment-review.tsv`, one row per
+take-based segment with the old (fixed-mode) episode text projected onto it
+by time overlap and a heuristic `flag` (`off_content`, `duplicate`,
+`silent_battle`, or blank) as a starting point -- this is a keyword guess
+over old synopses written against different boundaries, not a verdict.
+Fill in the blank `decision` column by hand: blank/`keep` (default --
+mainline), `extras` (real footage, just not Super Family content -- keep
+it, but out of the numbered season sequence), or `trim` (cut entirely,
+e.g. dead/blank tape -- this is what actually shortens total runtime).
+
+```bash
+python3 scripts/scenes/56-apply-review-decisions.py
+```
+
+Splits `episode-plan-takes.tsv` by those decisions into
+`episode-plan-takes-main.tsv` and `episode-plan-takes-extras.tsv` (both in
+the same schema `60`/`70` already read), dropping `trim` rows from both.
+Run the normal `60` → `70` → `80` sequence once per plan -- unmodified for
+the main one, and with `--flat-season EX` / `--container extras` for the
+extras one so it lands in its own `episodes/extras/` folder instead of
+being interleaved into `season-{NN}`:
+
+```bash
+python3 scripts/scenes/60-export-episodes.py --plan content/transcripts/scenes/episode-plan-takes-main.tsv
+python3 scripts/scenes/70-assign-seasons.py --plan content/transcripts/scenes/episode-plan-takes-main.tsv \
+  --output content/transcripts/scenes/season-plan.tsv
+python3 scripts/scenes/80-organize-seasons.py --plan content/transcripts/scenes/season-plan.tsv
+
+python3 scripts/scenes/60-export-episodes.py --plan content/transcripts/scenes/episode-plan-takes-extras.tsv
+python3 scripts/scenes/70-assign-seasons.py --plan content/transcripts/scenes/episode-plan-takes-extras.tsv \
+  --output content/transcripts/scenes/season-plan-extras.tsv --flat-season EX
+python3 scripts/scenes/80-organize-seasons.py --plan content/transcripts/scenes/season-plan-extras.tsv \
+  --container extras
+```
+
+Neither `55` nor `56` has been re-run with real decisions yet -- the
+`decision` column in `segment-review.tsv` is still blank throughout, and
+until it's filled in `56` treats every segment as `keep` (mainline), same
+as not running it at all.
+
 `60-export-episodes.py` cuts each planned episode from its source movie to
 `/mnt/creative/projects/superfamily/episodes/{video_id}/`, using stream copy
 by default (fast, no re-encode, but starts on the nearest keyframe -- see

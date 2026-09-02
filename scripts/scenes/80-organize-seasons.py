@@ -34,6 +34,16 @@ def parse_args() -> argparse.Namespace:
         help="Directory 60-export-episodes.py wrote per-video episode files into.",
     )
     parser.add_argument("--force", action="store_true")
+    parser.add_argument(
+        "--container",
+        choices=("season", "extras"),
+        default="season",
+        help="'season' (default): {episodes-dir}/season-{NN}/S{NN}E{yy}.mp4, "
+        "numbered by the plan's 'season' column. 'extras': "
+        "{episodes-dir}/extras/EX{yy}.mp4, for a bonus-content plan produced "
+        "with 70-assign-seasons.py --flat-season (season column is a label, "
+        "not a number, so it's ignored for naming).",
+    )
     return parser.parse_args()
 
 
@@ -49,7 +59,6 @@ def main() -> int:
     skipped = 0
     missing = 0
     for row in rows:
-        season = int(row["season"])
         source = (
             args.episodes_dir
             / row["video_id"]
@@ -60,9 +69,14 @@ def main() -> int:
             missing += 1
             continue
 
-        season_dir = args.episodes_dir / f"season-{season:02d}"
+        if args.container == "extras":
+            season_dir = args.episodes_dir / "extras"
+            dest = season_dir / f"EX{row['season_episode_number']}.mp4"
+        else:
+            season = int(row["season"])
+            season_dir = args.episodes_dir / f"season-{season:02d}"
+            dest = season_dir / f"S{season:02d}E{row['season_episode_number']}.mp4"
         season_dir.mkdir(parents=True, exist_ok=True)
-        dest = season_dir / f"S{season:02d}E{row['season_episode_number']}.mp4"
         if dest.exists() and not args.force:
             print(f"Skipping existing: {dest}")
             skipped += 1
