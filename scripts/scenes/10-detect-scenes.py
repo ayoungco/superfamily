@@ -150,10 +150,14 @@ def main() -> int:
             continue
 
         print(f"Detecting scenes: {row['source_name']}")
-        duration = video_duration(source)
-        cuts = detect_cuts(source, args.threshold)
-        points = boundaries(cuts, duration, args.min_duration)
-        write_detection(output, points)
+        try:
+            duration = video_duration(source)
+            cuts = detect_cuts(source, args.threshold)
+            points = boundaries(cuts, duration, args.min_duration)
+            write_detection(output, points)
+        except subprocess.CalledProcessError as exc:
+            print(f"  FAILED (skipping): {exc}", file=sys.stderr)
+            continue
         print(f"  wrote {len(points) - 1} clip boundary(s) to {output}")
 
     return 0

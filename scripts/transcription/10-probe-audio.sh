@@ -40,7 +40,7 @@ tail -n +2 "$manifest" | while IFS=$'\t' read -r id source_path source_name; do
   json="$out_dir/$id.streams.json"
   echo "Probing: $source_name"
   ffprobe -hide_banner -i "$source_path" > "$log" 2>&1 || true
-  ffprobe -v error -show_streams -show_format -of json "$source_path" > "$json"
+  ffprobe -v error -show_streams -show_format -of json "$source_path" > "$json" 2>>"$log" || true
   echo "  wrote $log"
   echo "  wrote $json"
 done
