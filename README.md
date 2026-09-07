@@ -48,6 +48,7 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 
 - [x] Separate SF and Powerteam movies into 1-hour episodes
 - [x] Export 10-20 minute episodes programmatically from scene-detection data, grouped into seasons, instead of manual Premiere cuts. See [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) and `scripts/scenes/50-plan-episodes.py` through `80-organize-seasons.py`.
+- [x] Reorganize `content/` out of a flat junk drawer into `narrative/`, `lore/`, `site-archive/`, `inspiration/`, `data/`, and `transcripts/`. See [Content Directory Cleanup](docs/content-directory-cleanup.md).
 - [ ] Meaningful titles for each episode
 - [ ] One audio channel drops out in some movies, needs restored
 
@@ -80,7 +81,7 @@ formerly known as the Powerteam.
 
 ## World And Design
 
-- [[content/ship|The Ship]] - precursor to the AC.
+- [[content/lore/ship|The Ship]] - precursor to the AC.
 - [[Iguazu Falls]] - AC design, environments, and reconstruction ideas.
 - [[LEGO Adventurers Jungle Theme]] - visual and historical inspiration.
 - [[whimsy|Whimsical locations]] - real-world fantasy landscape references.

@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .DS_Store
+.obsidian/
 
 # Ultralytics downloads model checkpoints into the current working directory
 # unless told otherwise.
