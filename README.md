@@ -51,6 +51,7 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - [x] Reorganize `content/` out of a flat junk drawer into `narrative/`, `lore/`, `site-archive/`, `inspiration/`, `data/`, and `transcripts/`. See [Content Directory Cleanup](docs/content-directory-cleanup.md).
 - [ ] Meaningful titles for each episode
 - [ ] One audio channel drops out in some movies, needs restored
+- [ ] Publish episodes to Plex under `/mnt/media/video/Super Family/` — script is ready and tested (`scripts/scenes/94-publish-to-plex.py`: Plex-standard naming, per-episode subtitles sliced from the source transcripts, NFO metadata from `content/data/episode-metadata/`, `tvshow.nfo`, poster, `.plexmatch`). Blocked on `/mnt/media` denying all writes for this account at the SMB level (2026-09-08) — needs an NAS-side share-permission fix, not something fixable from this client. Just run the script once that's resolved.
 
 ### Ideas
 
