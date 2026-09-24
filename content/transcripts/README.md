@@ -7,7 +7,7 @@ Related: [[scripts/transcription/README|Local Video Transcription Workflow]] |
 This directory holds everything the transcription and scene-detection
 pipelines produce. Source video is never copied in here — every script reads
 it directly from wherever it actually lives (for example
-`/mnt/creative/projects/superfamily`); the manifest below stores absolute
+`/mnt/creative/superfamily`); the manifest below stores absolute
 paths.
 
 - `manifest.tsv`: video discovery output. Generated, ignored by Git.

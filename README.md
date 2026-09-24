@@ -49,9 +49,18 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
 - [x] Separate SF and Powerteam movies into 1-hour episodes
 - [x] Export 10-20 minute episodes programmatically from scene-detection data, grouped into seasons, instead of manual Premiere cuts. See [Programmatic Episode Splitting](docs/programmatic-episode-splitting.md) and `scripts/scenes/50-plan-episodes.py` through `80-organize-seasons.py`.
 - [x] Reorganize `content/` out of a flat junk drawer into `narrative/`, `lore/`, `site-archive/`, `inspiration/`, `data/`, and `transcripts/`. See [Content Directory Cleanup](docs/content-directory-cleanup.md).
+- [ ] Adopt take-based episode cutting. Segments are planned, all 185 are screened for dead tape, and off-content was found from speech-density outliers plus targeted transcript review; `content/transcripts/scenes/segment-review.tsv` now carries proposed decisions (177 keep / 5 extras / 3 trim, dropping 46 min of blank tape and routing 71 min of recorded-over broadcast, family video and mostly-dead segments to extras). Needs a yes before `56` → `60` → `70` → `80` re-export, which invalidates every existing `SxxEyy` code. See [Take-Based Episode Splitting](docs/take-based-episode-splitting.md).
 - [ ] Meaningful titles for each episode
 - [ ] One audio channel drops out in some movies, needs restored
 - [ ] Publish episodes to Plex under `/mnt/media/video/Super Family/` — script is ready and tested (`scripts/scenes/94-publish-to-plex.py`: Plex-standard naming, per-episode subtitles sliced from the source transcripts, NFO metadata from `content/data/episode-metadata/`, `tvshow.nfo`, poster, `.plexmatch`). Blocked on `/mnt/media` denying all writes for this account at the SMB level (2026-09-08) — needs an NAS-side share-permission fix, not something fixable from this client. Just run the script once that's resolved.
+- [ ] Recover raw source footage misplaced outside the project. 148
+  candidate clips (112 tagged `[SF2]`–`[SF6]`, 36 from a Powerteam-era
+  tape) totaling 6.6 GB sit unregistered inside the general family photo
+  archive on the NAS instead of `worlds/superfamily/`, along with a
+  handful of misplaced single-purpose assets (the show's theme song, old
+  "Dr. Seinyor" brand art). See [Raw Footage and Asset
+  Recovery](docs/raw-footage-and-asset-recovery.md) for the full
+  findings and proposed triage/registration plan.
 
 ### Ideas
 
@@ -65,6 +74,52 @@ Open [[Vault Index]] for the Obsidian-oriented map of the archive.
   from, and the 2D-inpainting vs. 3D-render tradeoff. Scene detection +
   person-classification has since been run across the full archive; see
   [Scene Classification Results](docs/scene-classification-results.md).
+- Per-season supercuts: one condensed video per season with silence and
+  dead/inactive stretches trimmed out. Deliberately not built on top of
+  the take-based episode segments (that granularity is wrong for this —
+  see the doc); reuses the existing dead-footage screening signal at
+  scene-cut granularity instead, plus a new, not-yet-calibrated
+  "nothing's moving" activity signal for real-but-inactive footage that
+  `dead_pct` alone can't catch. See
+  [Season Supercuts](docs/season-supercuts.md) for the full research.
+- Playable combat-system game: `content/lore/SFCOMBAT.txt` is a fully
+  specced turn-based RPG battle system (shield/health, energy, rage,
+  Pulse of Vengeance, Drive gauge) written as a kid, and the gauge art
+  already exists in `content/site-archive/images/` (`energy_demo.png`,
+  `rage_demo.png`, `pulse_demo.png`, `drive_demo.png`,
+  `shield_health_demo.png`). See
+  [Combat System as a Playable Game](docs/combat-system-game.md).
+- Crossover universe knowledge graph: the lore casually links a dozen
+  outside franchises (Bionicle, Star Wars, Pokémon, the Powerpuff
+  Girls, Crash Bandicoot, Armored Core, Redwall...) into one
+  continuity. An entity/relationship extraction over the narrative and
+  lore could drive an interactive graph view, a purpose-built
+  alternative to the doc-to-doc Obsidian graph musings in [[Graph]].
+  See [Crossover Universe Knowledge Graph](docs/crossover-knowledge-graph.md).
+- Revive the site archive as a working wiki: `content/site-archive/`
+  is a hand-built 2000s fan wiki (item rarities, battle system page,
+  character bios, history) with its own CSS and image set, sitting as
+  static, unopened HTML. See
+  [Site Archive Wiki Revival](docs/site-archive-wiki-revival.md).
+- Auto-generated season highlight reels: reuse the scene-classification
+  and speech-density signals already computed for the take-based
+  splitting work to rank and cut a short trailer per season, distinct
+  from the dead-footage-trimming Season Supercuts idea above. See
+  [Season Highlight Reels](docs/season-highlight-reels.md).
+- Bonus-features commentary track: present-day (or reconstructed
+  young-voice) narration reacting to specific scenes, delivered as a
+  separate Plex audio track once the publish is unblocked. See
+  [Commentary Track](docs/commentary-track.md).
+- Continuity bible: years of sprawling kid-written lore almost
+  certainly contradict each other, especially in the SFCOMBAT stat
+  math; an LLM-assisted pass to flag retcons/inconsistencies and
+  produce one canonical reference. See
+  [Continuity Bible](docs/continuity-bible.md).
+- Original character art: the site archive leans on borrowed franchise
+  art for original human characters (Dr. Seinyor, Stacie, Pepper, the
+  Evil Brother, etc.) that never got art of their own; generate
+  consistent original portraits instead. See
+  [Original Character Art](docs/original-character-art.md).
 
 
 # Super Family Vault Index
