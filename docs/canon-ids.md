@@ -35,6 +35,13 @@ and the two can still be joined.
 | `lore:nell-aulter` | character | Nell Aulter, manager of the Raven Arena | `history.txt` |
 | `lore:raven-arena` | place | The Raven Arena, AC vs AC sport | `history.txt` |
 | `lore:ac-battle-station` | machine | The AC battle station: house in the head, army in the legs | `history.txt`, `content/lore/ship.md` |
+| `lore:era-super-army` | era | The Super Army, between the Powerteam and the Super Family | `history.txt` |
+| `lore:unlimiter` | artifact | The Unlimiter: the gold disk, reforged | `history.txt` |
+| `lore:evil-brother` | character | The Evil Brother, Dr. Seinyor's twin | `history.txt` |
+| `lore:interversal-atlas` | artifact | The Interversal Atlas | `The Return of Dr. Seinyor.md` |
+| `lore:mutunga` | work | *Mutunga*, the chronicle of the fall and return | `The Return of Dr. Seinyor.md` |
+| `lore:seinyor-castle` | place | Seinyor Castle | scans |
+| `lore:seinyor-island` | place | Seinyor Island | scans |
 | `lore:the-ship` | machine | The Powerteam's ship | `content/lore/ship.md` |
 | `lore:mata-nui` | world | Mata Nui | `ship.md`, the movies |
 | `lore:makuta` | character | Makuta | the movies |
@@ -64,5 +71,5 @@ and the two can still be joined.
 | `lore:lego-island` | real-world | LEGO Island | `content/inspiration/` |
 | `lore:kingdom-hearts` | real-world | Kingdom Hearts (crossover worlds, in parallel) | README |
 
-Add IDs as the canon pages are written. This table is the register; check it before
+Canon pages live in `content/canon/<slug>.md`. Add IDs as the canon pages are written. This table is the register; check it before
 minting a new one.
